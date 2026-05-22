@@ -30,7 +30,7 @@ FIGURES = role_diagram.svg timeline.tikz.tex
 VECTORFIGURES =timeline.tikz.tex
 
 # Additional files to distribute (e.g., CSS, schema files, examples...)
-AUX_FILES =
+AUX_FILES = ConeSearch-v1.1.xsd
 
 -include ivoatex/Makefile
 
@@ -42,5 +42,8 @@ ivoatex/Makefile:
 timeline.tikz.pdf: timeline.tikz.tex
 	pdflatex -jobname=$*.tikz '\documentclass{article}\usepackage[active,tightpage]{preview}\usepackage{chronology}\PreviewEnvironment{chronology}\begin{document}\input '$<'\end{document}'
 
+STILTS ?= stilts
+SCHEMA_FILE=ConeSearch-v1.1.xsd
+
 test:
-	@echo "No tests defined yet"
+	@$(STILTS) xsdvalidate $(SCHEMA_FILE)
