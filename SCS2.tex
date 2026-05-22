@@ -976,7 +976,9 @@ the transition and then disbands.
 \begin{figure}
 \tikzfigure{timeline}
 \caption{A graphical representation of the transition from ConeSearch-1
-to SCS2 according to the optimistic scenario.}
+to SCS2 according to the optimistic scenario.  The figure was created
+assuming in January 2026; we are aware the initial WD has already come
+later than that.}
 \label{fig:timeline}
 \end{figure}
 
@@ -1012,10 +1014,21 @@ made and reported by the SCS transition team.
 To help implementors, this document comes with several example documents:
 
 \begin{itemize}
-\item A sample response
-\item A registry record for a one-table service with custom parameters
+\item A sample response\footnote{\auxiliaryurl{sample-response.xml}}.
+Note that this is the actual response of a live service that contains
+many items that are not requried for a basic SCS2 implementation.
+
+\item A registry record for a one-table service with custom
+parameters\footnote{\auxiliaryurl{sample-record-single.xml}}.
+The example record also contains an ConeSearch-1 capability,
+demonstrating the co-existence envisoned in the transition plan.
+It furthermore already has the stat element that is expected to
+be defined in VODataService 1.3; in particular for its application with
+input parameters, it is important for SCS2.
+
 \item A registry record for a CatalogResource with an auxiliary SCS2
-capability and the accompanying global SCS2 service declarations.
+capability and the accompanying global SCS2 service
+declarations.\todo{Vizier?}
 \end{itemize}
 
 \section{Changes from Previous Versions}

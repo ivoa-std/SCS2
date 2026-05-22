@@ -1,0 +1,915 @@
+<?xml version="1.0"?>
+<ri:Resource
+		xmlns:cs="http://www.ivoa.net/xml/ConeSearch/v1.0"
+		xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0"
+		xmlns:vs="http://www.ivoa.net/xml/VODataService/v1.1"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		created="2020-11-17T11:00:00Z"
+		status="active"
+		updated="2024-12-27T08:31:03Z"
+		version="1.2"
+		xsi:schemaLocation="http://www.ivoa.net/xml/VODataService/v1.1 http://www.ivoa.net/xml/VODataService/v1.1
+			http://www.ivoa.net/xml/RegistryInterface/v1.0 http://www.ivoa.net/xml/RegistryInterface/v1.0"
+		xsi:type="vs:CatalogService">
+  <title>Gaia DR3 Lite Cone Search</title>
+  <shortName>DR3 lite Cone</shortName>
+  <identifier>ivo://org.gavo.dc/gaia/q3/cone</identifier>
+  <curation>
+    <publisher>The GAVO DC team</publisher>
+    <creator>
+      <name>GAIA Collaboration</name>
+    </creator>
+    <date role="Updated">2023-04-11T08:03:36Z</date>
+    <date role="Updated">2022-08-23</date>
+    <contact>
+      <name>GAVO Data Centre Team</name>
+      <address>M&#xF6;nchhofstrasse 12-14, D-69120 Heidelberg</address>
+      <email>gavo@ari.uni-heidelberg.de</email>
+      <telephone>+49 6221 54 1837</telephone>
+    </contact>
+  </curation>
+  <content>
+    <subject>stars</subject>
+    <subject>surveys</subject>
+    <subject>astrometry</subject>
+    <subject>proper-motions</subject>
+    <description>
+This schema contains data re-published from the official
+Gaia mirrors (such as ivo://uni-heidelberg.de/gaia/tap) either to
+support combining its data with local tables (the various Xlite tables)
+or to make the data more accessible to VO clients (e.g., epoch fluxes).
+
+Other Gaia-related data is found in, among others, the gdr3mock,
+gdr3spec, gedr3auto, gedr3dist, gedr3mock, and gedr3spur schemas.</description>
+    <referenceURL>http://dc.g-vo.org/gaia/q3/cone/info</referenceURL>
+    <relationship>
+      <relationshipType>IsServedBy</relationshipType>
+      <relatedResource ivo-id="ivo://org.gavo.dc/tap">GAVO Data Center TAP service</relatedResource>
+      <relatedResource ivo-id="ivo://org.gavo.dc/tap">GAVO Data Center TAP service</relatedResource>
+    </relationship>
+  </content>
+  <rights>
+If you use public Gaia DR3 data in a paper, please take note of
+`ESAC's guide`_ on how to acknowledge and cite it.
+
+.. _ESAC's guide: https://gea.esac.esa.int/archive/documentation/GDR3/Miscellaneous/sec_credit_and_citation_instructions/</rights>
+  <capability standardID="ivo://ivoa.net/std/conesearch" xsi:type="cs:ConeSearch">
+    <interface role="std" xsi:type="vs:ParamHTTP">
+      <accessURL use="base">http://dc.g-vo.org/gaia/q3/cone/scs.xml?</accessURL>
+      <mirrorURL>https://dc.g-vo.org/gaia/q3/cone/scs.xml?</mirrorURL>
+      <queryType>GET</queryType>
+      <resultType>application/x-votable+xml</resultType>
+      <param std="true">
+        <name>RA</name>
+        <description>Right Ascension (ICRS decimal)</description>
+        <unit>deg</unit>
+        <ucd>pos.eq.ra</ucd>
+        <dataType xsi:type="vs:SimpleDataType">real</dataType>
+      </param>
+      <param std="true">
+        <name>DEC</name>
+        <description>Declination (ICRS decimal)</description>
+        <unit>deg</unit>
+        <ucd>pos.eq.dec</ucd>
+        <dataType xsi:type="vs:SimpleDataType">real</dataType>
+      </param>
+      <param std="true">
+        <name>SR</name>
+        <description>Search radius</description>
+        <unit>deg</unit>
+        <dataType xsi:type="vs:SimpleDataType">real</dataType>
+      </param>
+      <param std="false">
+        <name>parallax</name>
+        <description>Absolute barycentric stellar parallax of the source at the reference epoch J2016.0. If looking for a distance, consider joining with gedr3dist.main and using the distances from there.</description>
+        <unit>mas</unit>
+        <ucd>pos.parallax</ucd>
+        <stats>
+          <min>-187.0294</min>
+          <percentile03>-1.3247185945510864</percentile03>
+          <median>0.3063945472240448</median>
+          <percentile97>2.292365789413452</percentile97>
+          <max>269.0573</max>
+          <fillFactor>0.81007904</fillFactor>
+        </stats>
+        <dataType arraysize="2" xsi:type="vs:SimpleDataType">real</dataType>
+      </param>
+      <param std="false">
+        <name>phot_g_mean_mag</name>
+        <description>Mean magnitude in the G band. This is computed from the G-band mean flux applying the magnitude zero-point in the Vega scale. To obtain error estimates, see phot_g_mean_flux_over_error.</description>
+        <unit>mag</unit>
+        <ucd>phot.mag;em.opt;stat.mean</ucd>
+        <stats>
+          <min>1.7732803</min>
+          <percentile03>15.506837224960327</percentile03>
+          <median>19.722881317138672</median>
+          <percentile97>21.033306121826172</percentile97>
+          <max>22.75072</max>
+          <fillFactor>0.9969936</fillFactor>
+        </stats>
+        <dataType arraysize="2" xsi:type="vs:SimpleDataType">real</dataType>
+      </param>
+      <param std="false">
+        <name>phot_bp_mean_mag</name>
+        <description>Mean magnitude in the integrated BP band. This is computed from the BP-band mean flux applying the magnitude zero-point in the Vega scale. To obtain error estimates, see phot_bp_mean_flux_over_error.</description>
+        <unit>mag</unit>
+        <ucd>phot.mag;em.opt.B</ucd>
+        <stats>
+          <min>2.3980012</min>
+          <percentile03>15.891117095947266</percentile03>
+          <median>20.29434585571289</median>
+          <percentile97>21.856477737426758</percentile97>
+          <max>25.31606</max>
+          <fillFactor>0.85107094</fillFactor>
+        </stats>
+        <dataType arraysize="2" xsi:type="vs:SimpleDataType">real</dataType>
+      </param>
+      <param std="false">
+        <name>phot_rp_mean_mag</name>
+        <description>Mean magnitude in the integrated RP band. This is computed from the RP-band mean flux applying the magnitude zero-point in the Vega scale. To obtain error estimates, see phot_rp_mean_flux_over_error.</description>
+        <unit>mag</unit>
+        <ucd>phot.mag;em.opt.R</ucd>
+        <stats>
+          <min>1.9687437</min>
+          <percentile03>14.540414810180664</percentile03>
+          <median>18.604326248168945</median>
+          <percentile97>20.25994300842285</percentile97>
+          <max>24.64073</max>
+          <fillFactor>0.8582204</fillFactor>
+        </stats>
+        <dataType arraysize="2" xsi:type="vs:SimpleDataType">real</dataType>
+      </param>
+      <param std="false">
+        <name>source_id</name>
+        <description>Gaia DR3 unique source identifier. Note that this *cannot* be matched against the DR1 or DR2 source_ids.</description>
+        <ucd>meta.id;meta.main</ucd>
+        <stats>
+          <min>1511828647680</min>
+          <percentile03>4.59792466834312e+17</percentile03>
+          <median>4.280400489214347e+18</median>
+          <percentile97>6.707472532802898e+18</percentile97>
+          <max>6917528993283204480</max>
+          <fillFactor>1.0</fillFactor>
+        </stats>
+        <dataType arraysize="2" xsi:type="vs:SimpleDataType">integer</dataType>
+      </param>
+      <param std="true">
+        <name>RESPONSEFORMAT</name>
+        <description>File format requested for output.</description>
+        <ucd>meta.code.mime</ucd>
+        <stats>
+          <option>text/tab-separated-values</option>
+          <option>tsv</option>
+          <option>text/plain</option>
+          <option>txt</option>
+          <option>text/csv</option>
+          <option>csv_bare</option>
+          <option>text/csv;header=present</option>
+          <option>csv</option>
+          <option>application/json</option>
+          <option>json</option>
+          <option>application/geo+json</option>
+          <option>geojson</option>
+          <option>application/x-votable+xml</option>
+          <option>votable</option>
+          <option>application/x-votable+xml;serialization=binary2</option>
+          <option>votable/b2</option>
+          <option>votableb2</option>
+          <option>application/x-votable+xml;serialization=tabledata</option>
+          <option>text/xml</option>
+          <option>votable/td</option>
+          <option>votabletd</option>
+          <option>application/x-votable+xml;serialization=tabledata;version=1.1</option>
+          <option>text/xml</option>
+          <option>votabletd1.1</option>
+          <option>application/x-votable+xml;version=1.1</option>
+          <option>text/xml</option>
+          <option>votable1.1</option>
+          <option>application/x-votable+xml;serialization=tabledata;version=1.2</option>
+          <option>text/xml</option>
+          <option>votabletd1.2</option>
+          <option>application/x-votable+xml;serialization=tabledata;version=1.6</option>
+          <option>vodml</option>
+          <option>application/x-votable+xml;version=1.6</option>
+          <option>vodmlb</option>
+          <option>text/html</option>
+          <option>html</option>
+          <option>application/fits</option>
+          <option>fits</option>
+        </stats>
+        <dataType arraysize="*" xsi:type="vs:SimpleDataType">char</dataType>
+      </param>
+      <param std="true">
+        <name>MAXREC</name>
+        <description>Maximum number of records returned. Pass 0 to retrieve service parameters.</description>
+        <dataType xsi:type="vs:SimpleDataType">integer</dataType>
+      </param>
+      <param std="true">
+        <name>VERB</name>
+        <description>Exhaustiveness of column selection. VERB=1 only returns the most important columns, VERB=2 selects the columns deemed useful to the average user, VERB=3 returns a table with all available columns.</description>
+        <stats>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+        </stats>
+        <dataType xsi:type="vs:SimpleDataType">integer</dataType>
+      </param>
+    </interface>
+    <maxSR>180</maxSR>
+    <maxRecords>100000</maxRecords>
+    <verbosity>true</verbosity>
+    <testQuery>
+      <ra>303.29074137</ra>
+      <dec>40.9302920611415004</dec>
+      <sr>0.001</sr>
+    </testQuery>
+  </capability>
+  <capability standardID="ivo://ivoa.net/scs2#query-2.0" xsi:type="cs:ConeSearch">
+    <interface xsi:type="vs:ParamHTTP">
+      <accessURL use="base">http://dc.g-vo.org/gaia/q3/cone2/scs2.xml?</accessURL>
+      <mirrorURL>https://dc.g-vo.org/gaia/q3/cone2/scs2.xml?</mirrorURL>
+      <queryType>GET</queryType>
+      <resultType>application/x-votable+xml</resultType>
+      <param std="true">
+        <name>RA</name>
+        <description>Right Ascension (ICRS decimal)</description>
+        <unit>deg</unit>
+        <ucd>pos.eq.ra</ucd>
+        <dataType xsi:type="vs:SimpleDataType">real</dataType>
+      </param>
+      <param std="true">
+        <name>DEC</name>
+        <description>Declination (ICRS decimal)</description>
+        <unit>deg</unit>
+        <ucd>pos.eq.dec</ucd>
+        <dataType xsi:type="vs:SimpleDataType">real</dataType>
+      </param>
+      <param std="true">
+        <name>SR</name>
+        <description>Search radius</description>
+        <unit>deg</unit>
+        <dataType xsi:type="vs:SimpleDataType">real</dataType>
+      </param>
+      <param std="true">
+        <name>TABLE</name>
+        <description>The name of the table to run this against. If given, it must be a literal copy of the value of a table/name element from this service's VOSI tables endpoint.</description>
+        <ucd>meta.id;meta.table</ucd>
+        <stats>
+          <option>gaia.dr3lite</option>
+        </stats>
+        <dataType arraysize="*" xsi:type="vs:SimpleDataType">char</dataType>
+      </param>
+      <param std="true">
+        <name>POS</name>
+        <description>SIAv2-type POS parameter: CIRCLE, POLYGON, or RANGE.</description>
+        <ucd>pos.outline</ucd>
+        <dataType arraysize="*" xsi:type="vs:SimpleDataType">char</dataType>
+      </param>
+      <param std="false">
+        <name>UPLOAD</name>
+        <description>RA, DEC, SR for multiple cones; this is a DALI upload. Pass 'anything,spec', where spec is either a URL or param:x to point to a file upload x</description>
+        <dataType arraysize="*" xsi:type="vs:SimpleDataType">char</dataType>
+      </param>
+      <param std="false">
+        <name>parallax</name>
+        <description>Absolute barycentric stellar parallax of the source at the reference epoch J2016.0. If looking for a distance, consider joining with gedr3dist.main and using the distances from there.</description>
+        <unit>mas</unit>
+        <ucd>pos.parallax</ucd>
+        <stats>
+          <min>-187.0294</min>
+          <percentile03>-1.3247185945510864</percentile03>
+          <median>0.3063945472240448</median>
+          <percentile97>2.292365789413452</percentile97>
+          <max>269.0573</max>
+          <fillFactor>0.81007904</fillFactor>
+        </stats>
+        <dataType arraysize="2" xsi:type="vs:SimpleDataType">real</dataType>
+      </param>
+      <param std="false">
+        <name>phot_g_mean_mag</name>
+        <description>Mean magnitude in the G band. This is computed from the G-band mean flux applying the magnitude zero-point in the Vega scale. To obtain error estimates, see phot_g_mean_flux_over_error.</description>
+        <unit>mag</unit>
+        <ucd>phot.mag;em.opt;stat.mean</ucd>
+        <stats>
+          <min>1.7732803</min>
+          <percentile03>15.506837224960327</percentile03>
+          <median>19.722881317138672</median>
+          <percentile97>21.033306121826172</percentile97>
+          <max>22.75072</max>
+          <fillFactor>0.9969936</fillFactor>
+        </stats>
+        <dataType arraysize="2" xsi:type="vs:SimpleDataType">real</dataType>
+      </param>
+      <param std="false">
+        <name>phot_bp_mean_mag</name>
+        <description>Mean magnitude in the integrated BP band. This is computed from the BP-band mean flux applying the magnitude zero-point in the Vega scale. To obtain error estimates, see phot_bp_mean_flux_over_error.</description>
+        <unit>mag</unit>
+        <ucd>phot.mag;em.opt.B</ucd>
+        <stats>
+          <min>2.3980012</min>
+          <percentile03>15.891117095947266</percentile03>
+          <median>20.29434585571289</median>
+          <percentile97>21.856477737426758</percentile97>
+          <max>25.31606</max>
+          <fillFactor>0.85107094</fillFactor>
+        </stats>
+        <dataType arraysize="2" xsi:type="vs:SimpleDataType">real</dataType>
+      </param>
+      <param std="false">
+        <name>phot_rp_mean_mag</name>
+        <description>Mean magnitude in the integrated RP band. This is computed from the RP-band mean flux applying the magnitude zero-point in the Vega scale. To obtain error estimates, see phot_rp_mean_flux_over_error.</description>
+        <unit>mag</unit>
+        <ucd>phot.mag;em.opt.R</ucd>
+        <stats>
+          <min>1.9687437</min>
+          <percentile03>14.540414810180664</percentile03>
+          <median>18.604326248168945</median>
+          <percentile97>20.25994300842285</percentile97>
+          <max>24.64073</max>
+          <fillFactor>0.8582204</fillFactor>
+        </stats>
+        <dataType arraysize="2" xsi:type="vs:SimpleDataType">real</dataType>
+      </param>
+      <param std="false">
+        <name>source_id</name>
+        <description>Gaia DR3 unique source identifier. Note that this *cannot* be matched against the DR1 or DR2 source_ids.</description>
+        <ucd>meta.id;meta.main</ucd>
+        <stats>
+          <min>1511828647680</min>
+          <percentile03>4.59792466834312e+17</percentile03>
+          <median>4.280400489214347e+18</median>
+          <percentile97>6.707472532802898e+18</percentile97>
+          <max>6917528993283204480</max>
+          <fillFactor>1.0</fillFactor>
+        </stats>
+        <dataType arraysize="2" xsi:type="vs:SimpleDataType">integer</dataType>
+      </param>
+      <param std="true">
+        <name>RESPONSEFORMAT</name>
+        <description>File format requested for output.</description>
+        <ucd>meta.code.mime</ucd>
+        <stats>
+          <option>text/tab-separated-values</option>
+          <option>tsv</option>
+          <option>text/plain</option>
+          <option>txt</option>
+          <option>text/csv</option>
+          <option>csv_bare</option>
+          <option>text/csv;header=present</option>
+          <option>csv</option>
+          <option>application/json</option>
+          <option>json</option>
+          <option>application/geo+json</option>
+          <option>geojson</option>
+          <option>application/x-votable+xml</option>
+          <option>votable</option>
+          <option>application/x-votable+xml;serialization=binary2</option>
+          <option>votable/b2</option>
+          <option>votableb2</option>
+          <option>application/x-votable+xml;serialization=tabledata</option>
+          <option>text/xml</option>
+          <option>votable/td</option>
+          <option>votabletd</option>
+          <option>application/x-votable+xml;serialization=tabledata;version=1.1</option>
+          <option>text/xml</option>
+          <option>votabletd1.1</option>
+          <option>application/x-votable+xml;version=1.1</option>
+          <option>text/xml</option>
+          <option>votable1.1</option>
+          <option>application/x-votable+xml;serialization=tabledata;version=1.2</option>
+          <option>text/xml</option>
+          <option>votabletd1.2</option>
+          <option>application/x-votable+xml;serialization=tabledata;version=1.6</option>
+          <option>vodml</option>
+          <option>application/x-votable+xml;version=1.6</option>
+          <option>vodmlb</option>
+          <option>text/html</option>
+          <option>html</option>
+          <option>application/fits</option>
+          <option>fits</option>
+        </stats>
+        <dataType arraysize="*" xsi:type="vs:SimpleDataType">char</dataType>
+      </param>
+      <param std="true">
+        <name>MAXREC</name>
+        <description>Maximum number of records returned. Pass 0 to retrieve service parameters.</description>
+        <dataType xsi:type="vs:SimpleDataType">integer</dataType>
+      </param>
+      <param std="true">
+        <name>VERB</name>
+        <description>Exhaustiveness of column selection. VERB=1 only returns the most important columns, VERB=2 selects the columns deemed useful to the average user, VERB=3 returns a table with all available columns.</description>
+        <stats>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+        </stats>
+        <dataType xsi:type="vs:SimpleDataType">integer</dataType>
+      </param>
+    </interface>
+    <maxSR>180</maxSR>
+    <maxRecords>100000</maxRecords>
+    <verbosity>true</verbosity>
+    <testQuery>
+      <ra>303.29074137</ra>
+      <dec>40.9302920611415004</dec>
+      <sr>0.001</sr>
+    </testQuery>
+  </capability>
+  <capability standardID="ivo://ivoa.net/std/VOSI#capabilities">
+    <interface role="std" xsi:type="vs:ParamHTTP">
+      <accessURL use="full">http://dc.g-vo.org/gaia/q3/cone/capabilities</accessURL>
+      <mirrorURL>https://dc.g-vo.org/gaia/q3/cone/capabilities</mirrorURL>
+    </interface>
+  </capability>
+  <capability standardID="ivo://ivoa.net/std/VOSI#availability">
+    <interface role="std" xsi:type="vs:ParamHTTP">
+      <accessURL use="full">http://dc.g-vo.org/gaia/q3/cone/availability</accessURL>
+      <mirrorURL>https://dc.g-vo.org/gaia/q3/cone/availability</mirrorURL>
+    </interface>
+  </capability>
+  <capability standardID="ivo://ivoa.net/std/VOSI#tables">
+    <interface role="std" version="1.1" xsi:type="vs:ParamHTTP">
+      <accessURL use="full">http://dc.g-vo.org/gaia/q3/cone/tableMetadata</accessURL>
+      <mirrorURL>https://dc.g-vo.org/gaia/q3/cone/tableMetadata</mirrorURL>
+    </interface>
+  </capability>
+  <capability standardID="ivo://ivoa.net/std/TAP#aux">
+    <interface role="std" version="1.1" xsi:type="vs:ParamHTTP">
+      <accessURL use="full">http://dc.g-vo.org/tap</accessURL>
+      <mirrorURL>https://dc.g-vo.org/tap</mirrorURL>
+    </interface>
+  </capability>
+  <facility>Gaia</facility>
+  <coverage>
+    <spatial>0/0-11</spatial>
+    <temporal>57174 57174</temporal>
+    <spectral>1.986e-19 4.966e-19</spectral>
+    <footprint ivo-id="ivo://ivoa.net/std/moc">http://dc.g-vo.org/gaia/q3/cone/coverage</footprint>
+    <waveband>Optical</waveband>
+  </coverage>
+  <tableset>
+    <schema>
+      <name>gaia</name>
+      <title>Selections from Gaia Data Release 3 (DR3)</title>
+      <description>
+This schema contains data re-published from the official
+Gaia mirrors (such as ivo://uni-heidelberg.de/gaia/tap) either to
+support combining its data with local tables (the various Xlite tables)
+or to make the data more accessible to VO clients (e.g., epoch fluxes).
+
+Other Gaia-related data is found in, among others, the gdr3mock,
+gdr3spec, gedr3auto, gedr3dist, gedr3mock, and gedr3spur schemas.</description>
+      <table>
+        <name>gaia.dr3lite</name>
+        <title>Gaia DR3 source catalogue "light"</title>
+        <description> This is gaia_source from the Gaia Data Release 3, stripped to just
+enough columns to enable basic science (but therefore a bit faster and
+simpler to deal with than the full gaia_source table).
+
+Note that on this server, there is also The gedr3dist.main, which
+gives distances computed by Bailer-Jones et al. Use these in
+preference to working with the raw parallaxes.
+
+This server also carries the gedr3mock schema containing a simulation
+of gaia_source based on a state-of-the-art galaxy model, computed by
+Rybizki et al.
+
+The full DR3 is available from numerous places in the VO (in
+particular from the TAP services ivo://uni-heidelberg.de/gaia/tap and
+ivo://esavo/gaia/tap).</description>
+        <nrows>1811709771</nrows>
+        <column>
+          <name>source_id</name>
+          <description>Gaia DR3 unique source identifier. Note that this *cannot* be matched against the DR1 or DR2 source_ids.</description>
+          <ucd>meta.id;meta.main</ucd>
+          <stats>
+            <min>1511828647680</min>
+            <percentile03>4.59792466834312e+17</percentile03>
+            <median>4.280400489214347e+18</median>
+            <percentile97>6.707472532802898e+18</percentile97>
+            <max>6917528993283204480</max>
+            <fillFactor>1.0</fillFactor>
+          </stats>
+          <dataType xsi:type="vs:VOTableType">long</dataType>
+          <flag>indexed</flag>
+          <flag>primary</flag>
+        </column>
+        <column>
+          <name>ra</name>
+          <description>Barycentric Right Ascension in ICRS at epoch J2016.0</description>
+          <unit>deg</unit>
+          <ucd>pos.eq.ra;meta.main</ucd>
+          <stats>
+            <min>1.63271e-06</min>
+            <percentile03>44.3559</percentile03>
+            <median>260.257</median>
+            <percentile97>327.932</percentile97>
+            <max>360</max>
+            <fillFactor>1</fillFactor>
+          </stats>
+          <dataType xsi:type="vs:VOTableType">double</dataType>
+          <flag>indexed</flag>
+          <flag>nullable</flag>
+        </column>
+        <column>
+          <name>dec</name>
+          <description>Barycentric Declination in ICRS at epoch J2016.0</description>
+          <unit>deg</unit>
+          <ucd>pos.eq.dec;meta.main</ucd>
+          <stats>
+            <min>-89.8559</min>
+            <percentile03>-69.306</percentile03>
+            <median>-25.658</median>
+            <percentile97>58.8287</percentile97>
+            <max>89.8089</max>
+            <fillFactor>1</fillFactor>
+          </stats>
+          <dataType xsi:type="vs:VOTableType">double</dataType>
+          <flag>indexed</flag>
+          <flag>nullable</flag>
+        </column>
+        <column>
+          <name>ra_error</name>
+          <description>Standard error of ra (with cos &#x3B4; applied).</description>
+          <unit>mas</unit>
+          <ucd>stat.error;pos.eq.ra</ucd>
+          <stats>
+            <min>0.00389233</min>
+            <percentile03>0.02618</percentile03>
+            <median>0.369316</median>
+            <percentile97>12.7472</percentile97>
+            <max>99.9676</max>
+            <fillFactor>1</fillFactor>
+          </stats>
+          <dataType xsi:type="vs:VOTableType">float</dataType>
+          <flag>nullable</flag>
+        </column>
+        <column>
+          <name>dec_error</name>
+          <description>Standard error of dec</description>
+          <unit>mas</unit>
+          <ucd>stat.error;pos.eq.dec</ucd>
+          <stats>
+            <min>0.00447133</min>
+            <percentile03>0.025267</percentile03>
+            <median>0.340719</median>
+            <percentile97>10.0849</percentile97>
+            <max>99.9479</max>
+            <fillFactor>1</fillFactor>
+          </stats>
+          <dataType xsi:type="vs:VOTableType">float</dataType>
+          <flag>nullable</flag>
+        </column>
+        <column>
+          <name>pmra</name>
+          <description>Proper motion in right ascension of the source in ICRS at J2016.0. This is the tangent plane projection (i.e., multiplied by cos(&#x3B4;)) of the proper motion vector in the direction of increasing right ascension.</description>
+          <unit>mas/yr</unit>
+          <ucd>pos.pm;pos.eq.ra</ucd>
+          <stats>
+            <min>-2290.75</min>
+            <percentile03>-10.761</percentile03>
+            <median>-2.51098</median>
+            <percentile97>5.69019</percentile97>
+            <max>4002.65</max>
+            <fillFactor>0.810079</fillFactor>
+          </stats>
+          <dataType xsi:type="vs:VOTableType">float</dataType>
+          <flag>indexed</flag>
+          <flag>nullable</flag>
+        </column>
+        <column>
+          <name>pmdec</name>
+          <description>Proper motion in declination at J2016.0.</description>
+          <unit>mas/yr</unit>
+          <ucd>pos.pm;pos.eq.dec</ucd>
+          <stats>
+            <min>-5817.8</min>
+            <percentile03>-11.9807</percentile03>
+            <median>-3.10755</median>
+            <percentile97>5.22745</percentile97>
+            <max>1707.7</max>
+            <fillFactor>0.810079</fillFactor>
+          </stats>
+          <dataType xsi:type="vs:VOTableType">float</dataType>
+          <flag>indexed</flag>
+          <flag>nullable</flag>
+        </column>
+        <column>
+          <name>pmra_error</name>
+          <description>Standard error of pmra</description>
+          <unit>mas/yr</unit>
+          <ucd>stat.error;pos.pm;pos.eq.ra</ucd>
+          <stats>
+            <min>0.00419778</min>
+            <percentile03>0.0300381</percentile03>
+            <median>0.352457</median>
+            <percentile97>1.76446</percentile97>
+            <max>3.42746</max>
+            <fillFactor>0.810079</fillFactor>
+          </stats>
+          <dataType xsi:type="vs:VOTableType">float</dataType>
+          <flag>nullable</flag>
+        </column>
+        <column>
+          <name>pmdec_error</name>
+          <description>Standard error of pmdec</description>
+          <unit>mas/yr</unit>
+          <ucd>stat.error;pos.pm;pos.eq.dec</ucd>
+          <stats>
+            <min>0.00554307</min>
+            <percentile03>0.0282805</percentile03>
+            <median>0.314709</median>
+            <percentile97>1.55327</percentile97>
+            <max>3.44209</max>
+            <fillFactor>0.810079</fillFactor>
+          </stats>
+          <dataType xsi:type="vs:VOTableType">float</dataType>
+          <flag>nullable</flag>
+        </column>
+        <column>
+          <name>parallax</name>
+          <description>Absolute barycentric stellar parallax of the source at the reference epoch J2016.0. If looking for a distance, consider joining with gedr3dist.main and using the distances from there.</description>
+          <unit>mas</unit>
+          <ucd>pos.parallax</ucd>
+          <stats>
+            <min>-187.029</min>
+            <percentile03>-1.32472</percentile03>
+            <median>0.306395</median>
+            <percentile97>2.29237</percentile97>
+            <max>269.057</max>
+            <fillFactor>0.810079</fillFactor>
+          </stats>
+          <dataType xsi:type="vs:VOTableType">float</dataType>
+          <flag>indexed</flag>
+          <flag>nullable</flag>
+        </column>
+        <column>
+          <name>parallax_error</name>
+          <description>Standard error of parallax</description>
+          <unit>mas</unit>
+          <ucd>stat.error;pos.parallax</ucd>
+          <stats>
+            <min>0.00728338</min>
+            <percentile03>0.030428</percentile03>
+            <median>0.343089</median>
+            <percentile97>1.50642</percentile97>
+            <max>5.57554</max>
+            <fillFactor>0.810079</fillFactor>
+          </stats>
+          <dataType xsi:type="vs:VOTableType">float</dataType>
+          <flag>nullable</flag>
+        </column>
+        <column>
+          <name>phot_g_mean_mag</name>
+          <description>Mean magnitude in the G band. This is computed from the G-band mean flux applying the magnitude zero-point in the Vega scale. To obtain error estimates, see phot_g_mean_flux_over_error.</description>
+          <unit>mag</unit>
+          <ucd>phot.mag;em.opt;stat.mean</ucd>
+          <stats>
+            <min>1.77328</min>
+            <percentile03>15.5068</percentile03>
+            <median>19.7229</median>
+            <percentile97>21.0333</percentile97>
+            <max>22.7507</max>
+            <fillFactor>0.996994</fillFactor>
+          </stats>
+          <dataType xsi:type="vs:VOTableType">float</dataType>
+          <flag>indexed</flag>
+          <flag>nullable</flag>
+        </column>
+        <column>
+          <name>phot_g_mean_flux_over_error</name>
+          <description>Integrated mean G flux divided by its error. Errors are computed from the dispersion about the weighted mean of the input calibrated photometry.</description>
+          <ucd>stat.snr;phot.flux;em.opt;stat.mean</ucd>
+          <stats>
+            <min>1.08237</min>
+            <percentile03>40.8126</percentile03>
+            <median>240.357</median>
+            <percentile97>2759.69</percentile97>
+            <max>21526.2</max>
+            <fillFactor>0.996994</fillFactor>
+          </stats>
+          <dataType xsi:type="vs:VOTableType">float</dataType>
+          <flag>nullable</flag>
+        </column>
+        <column>
+          <name>phot_rp_mean_flux_over_error</name>
+          <description>Integrated mean RP flux divided by its error. Errors are computed from the dispersion about the weighted mean of the input calibrated photometry.</description>
+          <ucd>stat.snr;phot.flux;em.opt.R</ucd>
+          <stats>
+            <min>0.0545784</min>
+            <percentile03>4.51155</percentile03>
+            <median>35.5538</median>
+            <percentile97>808.823</percentile97>
+            <max>4.28292e+07</max>
+            <fillFactor>0.85822</fillFactor>
+          </stats>
+          <dataType xsi:type="vs:VOTableType">float</dataType>
+          <flag>nullable</flag>
+        </column>
+        <column>
+          <name>phot_rp_mean_mag</name>
+          <description>Mean magnitude in the integrated RP band. This is computed from the RP-band mean flux applying the magnitude zero-point in the Vega scale. To obtain error estimates, see phot_rp_mean_flux_over_error.</description>
+          <unit>mag</unit>
+          <ucd>phot.mag;em.opt.R</ucd>
+          <stats>
+            <min>1.96874</min>
+            <percentile03>14.5404</percentile03>
+            <median>18.6043</median>
+            <percentile97>20.2599</percentile97>
+            <max>24.6407</max>
+            <fillFactor>0.85822</fillFactor>
+          </stats>
+          <dataType xsi:type="vs:VOTableType">float</dataType>
+          <flag>indexed</flag>
+          <flag>nullable</flag>
+        </column>
+        <column>
+          <name>phot_bp_mean_flux_over_error</name>
+          <description>Integrated mean BP flux divided by its error. Errors are computed from the dispersion about the weighted mean of the input calibrated photometry.</description>
+          <ucd>stat.snr;phot.flux;em.opt.B</ucd>
+          <stats>
+            <min>0.0557928</min>
+            <percentile03>2.61862</percentile03>
+            <median>15.1807</median>
+            <percentile97>468.894</percentile97>
+            <max>3.7971e+07</max>
+            <fillFactor>0.851071</fillFactor>
+          </stats>
+          <dataType xsi:type="vs:VOTableType">float</dataType>
+          <flag>nullable</flag>
+        </column>
+        <column>
+          <name>phot_bp_mean_mag</name>
+          <description>Mean magnitude in the integrated BP band. This is computed from the BP-band mean flux applying the magnitude zero-point in the Vega scale. To obtain error estimates, see phot_bp_mean_flux_over_error.</description>
+          <unit>mag</unit>
+          <ucd>phot.mag;em.opt.B</ucd>
+          <stats>
+            <min>2.398</min>
+            <percentile03>15.8911</percentile03>
+            <median>20.2943</median>
+            <percentile97>21.8565</percentile97>
+            <max>25.3161</max>
+            <fillFactor>0.851071</fillFactor>
+          </stats>
+          <dataType xsi:type="vs:VOTableType">float</dataType>
+          <flag>indexed</flag>
+          <flag>nullable</flag>
+        </column>
+        <column>
+          <name>phot_bp_rp_excess_factor</name>
+          <description>BP/RP excess factor estimated from the comparison of the sum of integrated BP and RP fluxes with respect to the flux in the G band. This measures the excess of flux in the BP and RP integrated photometry with respect to the G band. This excess is believed to be caused by background and contamination issues affecting the BP and RP data. Therefore a large value of this factor for a given source indicates systematic errors in the BP and RP photometry.</description>
+          <ucd>stat.fit.goodness</ucd>
+          <stats>
+            <min>0.0509718</min>
+            <percentile03>1.05922</percentile03>
+            <median>1.30975</median>
+            <percentile97>2.55971</percentile97>
+            <max>1726.67</max>
+            <fillFactor>0.850372</fillFactor>
+          </stats>
+          <dataType xsi:type="vs:VOTableType">float</dataType>
+          <flag>nullable</flag>
+        </column>
+        <column>
+          <name>astrometric_excess_noise</name>
+          <description>This is the excess noise of the source, measuring the disagreement, expressed as an angle, between the observations of a source and the best-fitting standard astrometric model (using five astrometric parameters). A value of 0 signifies a well-behaved source, a positive value signifies that the residuals are larger than expected.</description>
+          <unit>mas</unit>
+          <ucd>stat.fit.goodness</ucd>
+          <stats>
+            <min>0</min>
+            <percentile03>0</percentile03>
+            <median>0.252861</median>
+            <percentile97>6.90813</percentile97>
+            <max>842.469</max>
+            <fillFactor>1</fillFactor>
+          </stats>
+          <dataType xsi:type="vs:VOTableType">float</dataType>
+          <flag>nullable</flag>
+        </column>
+        <column>
+          <name>radial_velocity</name>
+          <description>Spectroscopic radial velocity in the solar barycentric reference frame. For stars brighter than about 12 mag, this is the median of all single-epoch measurements. For fainter stars, RV estimation is from a co-added spectrum.</description>
+          <unit>km/s</unit>
+          <ucd>spect.dopplerVeloc.opt;em.opt.I</ucd>
+          <stats>
+            <min>-861.114</min>
+            <percentile03>-102.485</percentile03>
+            <median>-3.65447</median>
+            <percentile97>96.6219</percentile97>
+            <max>859.69</max>
+            <fillFactor>0.0186703</fillFactor>
+          </stats>
+          <dataType xsi:type="vs:VOTableType">float</dataType>
+          <flag>nullable</flag>
+        </column>
+        <column>
+          <name>radial_velocity_error</name>
+          <description>Error in radial_velocity; this is the error of the median for bright stars. For faint stars, it is derived from the cross-correlation function.</description>
+          <unit>km/s</unit>
+          <ucd>stat.error;spect.dopplerVeloc</ucd>
+          <stats>
+            <min>0.113001</min>
+            <percentile03>0.264362</percentile03>
+            <median>3.28352</median>
+            <percentile97>11.29</percentile97>
+            <max>39.9963</max>
+            <fillFactor>0.0186703</fillFactor>
+          </stats>
+          <dataType xsi:type="vs:VOTableType">float</dataType>
+          <flag>nullable</flag>
+        </column>
+        <column>
+          <name>pseudocolour</name>
+          <description>Effective wavenumber of the source estimated in the final astrometric processing. The pseudocolour is the astrometrically estimated effective wavenumber of the photon flux distribution in the astrometric (G) band, estimated from the chromatic displacements of image centroids. The field is empty when chromaticity was instead taken into account using the photometrically determined &#x3BD;_eff given in the field nu_eff_used_in_astrometry.</description>
+          <unit>um**-1</unit>
+          <ucd>em.wavenumber;phot.color</ucd>
+          <stats>
+            <min>-2.22377</min>
+            <percentile03>0.969167</percentile03>
+            <median>1.35404</median>
+            <percentile97>1.72025</percentile97>
+            <max>5.08622</max>
+            <fillFactor>0.486942</fillFactor>
+          </stats>
+          <dataType xsi:type="vs:VOTableType">float</dataType>
+          <flag>nullable</flag>
+        </column>
+        <column>
+          <name>pseudocolour_error</name>
+          <description>Standard error of the pseudocolour.</description>
+          <unit>um**-1</unit>
+          <ucd>stat.error;em.wavenumber;phot.color</ucd>
+          <stats>
+            <min>0.00135255</min>
+            <percentile03>0.0257512</percentile03>
+            <median>0.109814</median>
+            <percentile97>0.324178</percentile97>
+            <max>0.976636</max>
+            <fillFactor>0.486942</fillFactor>
+          </stats>
+          <dataType xsi:type="vs:VOTableType">float</dataType>
+          <flag>nullable</flag>
+        </column>
+        <column>
+          <name>visibility_periods_used</name>
+          <description>Number of visibility periods (groups of observations at least 4 days apart) used in the astrometric solution. A small value (less than 10) indicates that the calculated parallax could be more vulnerable to error not reflected in the formal uncertainties.</description>
+          <ucd>meta.number;obs</ucd>
+          <stats>
+            <min>1</min>
+            <percentile03>5.0</percentile03>
+            <median>16.0</median>
+            <percentile97>28.0</percentile97>
+            <max>33</max>
+            <fillFactor>1.0</fillFactor>
+          </stats>
+          <dataType xsi:type="vs:VOTableType">short</dataType>
+        </column>
+        <column>
+          <name>astrometric_params_solved</name>
+          <description>This is a binary code indicating which astrometric parameters were estimated for the source. A set bit means the parameter was estimated. The least-significant bit represents &#x3B1;, the next bits &#x3B4;, parallax, PM(RA) and PM(De). For Gaia DR2 the only relevant values are 31 (all five parameters solved) and 3 (only positions).</description>
+          <ucd>meta.code</ucd>
+          <stats>
+            <min>3</min>
+            <percentile03>3.0</percentile03>
+            <median>31.0</median>
+            <percentile97>95.0</percentile97>
+            <max>95</max>
+            <fillFactor>1.0</fillFactor>
+          </stats>
+          <dataType xsi:type="vs:VOTableType">short</dataType>
+          <flag>nullable</flag>
+        </column>
+        <column>
+          <name>random_index</name>
+          <description>Random index that can be used to deterministically select subsets</description>
+          <ucd>meta.code</ucd>
+          <stats>
+            <min>0</min>
+            <percentile03>54342273.3</percentile03>
+            <median>905836836.0</median>
+            <percentile97>1757319938.8999999</percentile97>
+            <max>1811709740</max>
+            <fillFactor>1.0</fillFactor>
+          </stats>
+          <dataType xsi:type="vs:VOTableType">long</dataType>
+          <flag>indexed</flag>
+        </column>
+        <column>
+          <name>ruwe</name>
+          <description>Renormalized Unit Weight Error; this is a revised measure for the overall consistency of the solution as defined by GAIA-C3-TN-LU-LL-124-01. A suggested cut on this is RUWE &lt;1.40) See the note for details.</description>
+          <ucd>stat.weight</ucd>
+          <stats>
+            <min>0.224753</min>
+            <percentile03>0.924334</percentile03>
+            <median>1.02295</median>
+            <percentile97>1.62199</percentile97>
+            <max>93.4137</max>
+            <fillFactor>0.810079</fillFactor>
+          </stats>
+          <dataType xsi:type="vs:VOTableType">float</dataType>
+          <flag>nullable</flag>
+        </column>
+      </table>
+    </schema>
+  </tableset>
+</ri:Resource>

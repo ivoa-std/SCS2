@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VOTABLE xmlns="http://www.ivoa.net/xml/VOTable/v1.3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.5" xsi:schemaLocation="http://www.ivoa.net/xml/VOTable/v1.3 http://vo.ari.uni-heidelberg.de/docs/schemata/VOTable.xsd">
+  <DESCRIPTION>
+This schema contains data re-published from the official
+Gaia mirrors (such as ivo://uni-heidelberg.de/gaia/tap) either to
+support combining its data with local tables (the various Xlite tables)
+or to make the data more accessible to VO clients (e.g., epoch fluxes).
+
+Other Gaia-related data is found in, among others, the gdr3mock,
+gdr3spec, gedr3auto, gedr3dist, gedr3mock, and gedr3spur schemas.</DESCRIPTION>
+  <INFO name="legal" value=" If you use public Gaia DR3 data in a paper, please take note of `ESAC's guide`_ on how to acknowledge and cite it.  .. _ESAC's guide: https://gea.esac.esa.int/archive/documentation/GDR3/Miscellaneous/sec_credit_and_citation_instructions/"/>
+  <RESOURCE type="results">
+    <INFO name="queryPars" value="q3c_radial_query(ra, dec, %(RA0)s, %(DEC0)s, %(SR0)s)">{'RA0': 145.1, 'DEC0': -78.2, 'SR0': 0.01}</INFO>
+    <INFO name="QUERY_STATUS" value="OK"/>
+    <INFO name="standardID" value="ivo://ivoa.net/SCS2#query-2.0">Written by DaCHS 2.12.2 SCS2Renderer</INFO>
+    <INFO name="server_software" value="DaCHS/2.12.2 twistedWeb/22.4.0">Software that produced this VOTable</INFO>
+    <INFO name="server" value="http://dc.g-vo.org">Base URI of the server</INFO>
+    <INFO name="citation" ucd="" value="http://dc.g-vo.org/tableinfo/gaia.dr3lite#ti-citing">Advice on citing this resource</INFO>
+    <INFO name="citation" ucd="" value="http://dc.g-vo.org/gaia/q3/cone2/howtocite">Advice on citing this resource</INFO>
+    <INFO name="request" ucd="meta.ref.url" value="http://dc.g-vo.org/gaia/q3/cone2/scs2.xml?RA=145.1&amp;DEC=-78.2&amp;SR=0.01">Request string that led up to this result.</INFO>
+    <INFO name="ivoid" ucd="meta.ref.ivoid" value="ivo://org.gavo.dc/gaia/q3/cone">Originating VO resource</INFO>
+    <INFO name="ivoid" ucd="meta.ref.ivoid" value="ivo://org.gavo.dc/gaia/q3/dr3lite">Originating VO resource</INFO>
+    <INFO name="ivoid" ucd="meta.ref.ivoid" value="ivo://org.gavo.dc/gaia/q3/edr3lite">Originating VO resource</INFO>
+    <INFO name="ivoid_service" ucd="meta.ref.ivoid" value="ivo://org.gavo.dc/gaia/q3/cone">Originating VO service</INFO>
+    <INFO name="ivoid_service" ucd="meta.ref.ivoid" value="ivo://org.gavo.dc/gaia/q3/dr3lite">Originating VO service</INFO>
+    <INFO name="ivoid_service" ucd="meta.ref.ivoid" value="ivo://org.gavo.dc/gaia/q3/edr3lite">Originating VO service</INFO>
+    <INFO name="publisher" value="The GAVO DC team">Data centre that has delivered the data</INFO>
+    <INFO name="rights" value=" If you use public Gaia DR3 data in a paper, please take note of `ESAC's guide`_ on how to acknowledge and cite it.  .. _ESAC's guide: https://gea.esac.esa.int/archive/documentation/GDR3/Miscellaneous/sec_credit_and_citation_instructions/">Legal conditions applicable to (parts of) the data contained</INFO>
+    <INFO name="request_date" ucd="time.creation" value="2026-05-22T13:29:08Z"/>
+    <INFO name="contact" ucd="meta.email" value="gavo@ari.uni-heidelberg.de">Contact option</INFO>
+    <INFO name="reference_url" ucd="meta.ref.url" value="http://dc.g-vo.org/tableinfo/gaia.dr3lite">More information on the data Source</INFO>
+    <INFO name="reference_url" ucd="meta.ref.url" value="http://dc.g-vo.org/gaia/q3/cone2/info">More information on the data Source</INFO>
+    <INFO name="creator" ucd="meta.bib.author" value="GAIA Collaboration">Name of a person or entity that produced a contributing resource</INFO>
+    <COOSYS ID="system" epoch="J2016.0" refposition="BARYCENTER" system="ICRS"/>
+    <TABLE name="result">
+      <DESCRIPTION> This is gaia_source from the Gaia Data Release 3, stripped to just
+enough columns to enable basic science (but therefore a bit faster and
+simpler to deal with than the full gaia_source table).
+
+Note that on this server, there is also The gedr3dist.main, which
+gives distances computed by Bailer-Jones et al. Use these in
+preference to working with the raw parallaxes.
+
+This server also carries the gedr3mock schema containing a simulation
+of gaia_source based on a state-of-the-art galaxy model, computed by
+Rybizki et al.
+
+The full DR3 is available from numerous places in the VO (in
+particular from the TAP services ivo://uni-heidelberg.de/gaia/tap and
+ivo://esavo/gaia/tap).</DESCRIPTION>
+      <GROUP utype="stc:CatalogEntryLocation">
+        <PARAM arraysize="*" datatype="char" name="CoordFlavor" utype="stc:AstroCoordSystem.SpaceFrame.CoordFlavor" value="SPHERICAL"/>
+        <PARAM arraysize="*" datatype="char" name="coord_naxes" utype="stc:AstroCoordSystem.SpaceFrame.CoordFlavor.coord_naxes" value="3"/>
+        <PARAM arraysize="*" datatype="char" name="CoordRefFrame" utype="stc:AstroCoordSystem.SpaceFrame.CoordRefFrame" value="ICRS"/>
+        <PARAM arraysize="*" datatype="char" name="ReferencePosition" utype="stc:AstroCoordSystem.SpaceFrame.ReferencePosition" value="BARYCENTER"/>
+        <PARAM arraysize="*" datatype="char" name="Epoch" utype="stc:AstroCoords.Position3D.Epoch" value="2016.0"/>
+        <PARAM arraysize="*" datatype="char" name="yearDef" utype="stc:AstroCoords.Position3D.Epoch.yearDef" value="J"/>
+        <PARAM arraysize="*" datatype="char" name="URI" utype="stc:DataModel.URI" value="http://www.ivoa.net/xml/STC/stc-v1.30.xsd"/>
+        <FIELDref ref="ra_error" utype="stc:AstroCoords.Position3D.Error3.C1"/>
+        <FIELDref ref="dec_error" utype="stc:AstroCoords.Position3D.Error3.C2"/>
+        <FIELDref ref="parallax_error" utype="stc:AstroCoords.Position3D.Error3.C3"/>
+        <FIELDref ref="ra" utype="stc:AstroCoords.Position3D.Value3.C1"/>
+        <FIELDref ref="dec" utype="stc:AstroCoords.Position3D.Value3.C2"/>
+        <FIELDref ref="parallax" utype="stc:AstroCoords.Position3D.Value3.C3"/>
+        <FIELDref ref="pmra_error" utype="stc:AstroCoords.Velocity3D.Error3.C1"/>
+        <FIELDref ref="pmdec_error" utype="stc:AstroCoords.Velocity3D.Error3.C2"/>
+        <FIELDref ref="radial_velocity_error" utype="stc:AstroCoords.Velocity3D.Error3.C3"/>
+        <FIELDref ref="pmra" utype="stc:AstroCoords.Velocity3D.Value3.C1"/>
+        <FIELDref ref="pmdec" utype="stc:AstroCoords.Velocity3D.Value3.C2"/>
+        <FIELDref ref="radial_velocity" utype="stc:AstroCoords.Velocity3D.Value3.C3"/>
+      </GROUP>
+      <GROUP ID="ndapssggbhsa" name="note-id">
+        <DESCRIPTION>
+For the contents of Gaia DR3,
+the source ID consists of a 64-bit integer, least
+significant bit = 1 and most significant bit = 64, comprising:
+
+* a HEALPix index number (sky pixel) in bits 36 - 63; by definition the
+	smallest HEALPix index number is zero.
+* a 3-bit Data Processing Centre code in bits 33 - 35; for example
+	MOD(source_id / 4294967296, 8) can be used to distinguish between
+	sources initialised via the Initial Gaia Source List by the Torino DPC
+	(code = 0) and sources otherwise detected and assigned by Gaia
+	observations (code &gt; 0)
+* a 25-bit plus 7 bit sequence number within the HEALPix pixel in bits 1
+	to 32 split into:
+
+	* a 25 bit running number in bits 8 - 32; the running numbers are
+		defined to be positive, i.e. never zero (except in the case of forced
+		empty windows)
+	* a 7-bit component number in bits 1 - 7
+
+This means that the HEALpix index level 12 of a given source is contained
+in the most significant bits. HEALpix index of 12 and lower levels can
+thus be retrieved as follows:
+
+* HEALpix level 12 = source_id / 34359738368
+* HEALpix level 11 = source_id / 137438953472
+* HEALpix level 10 = source_id / 549755813888
+* HEALpix level n = source_id / 2^35 * 4^(12 - level).</DESCRIPTION>
+        <FIELDref ref="source_id"/>
+      </GROUP>
+      <GROUP ID="ndapssggwnha" name="note-e">
+        <DESCRIPTION>
+As long as the SNR is larger than 10 or so, 1.09*mag/snr is a reasonable
+approximation for an roughly symmetric magnitude error.  For smaller
+SNR, the error distribution of the magnitude becomes very asymmetric
+and highly non-Gaussian.</DESCRIPTION>
+        <FIELDref ref="phot_g_mean_flux_over_error"/>
+        <FIELDref ref="phot_rp_mean_flux_over_error"/>
+        <FIELDref ref="phot_bp_mean_flux_over_error"/>
+      </GROUP>
+      <GROUP ID="ndapssgghbpa" name="note-ruwe">
+        <DESCRIPTION>
+The Renormalized Unit Weight Error (RUWE) is defined in
+L. Lindegren: Re-normalising the astrometric chi-square in Gaia DR2
+(Gaia tech note `GAIA-C3-TN-LU-LL-124-01
+&lt;http://www.rssd.esa.int/doc_fetch.php?id=3757412&gt;`_).  This is
+essentially the astrometric_chi2 from the DR2 release, but corrected
+for its strong dependency on magnitude and colour.  For quality
+cuts, this is the recommended quantity to use.  Lindegren suggests
+using RUWE&lt;1.4 as a quality cut for “good” solutions based on
+the shape of the distribution.
+
+The values given here were calculated independently of DPAC and do
+not use interpolation on the grids provided by Lindegren et al.  Thus,
+minor differences from the “official” RUWE values are expected.
+As Lindegren et al point out, such differences should not matter
+in science applications, though.</DESCRIPTION>
+        <FIELDref ref="ruwe"/>
+      </GROUP>
+      <FIELD ID="_r" datatype="double" name="_r" ucd="pos.angDistance" unit="deg">
+        <DESCRIPTION>Distance to cone center</DESCRIPTION>
+      </FIELD>
+      <FIELD ID="source_id" datatype="long" name="source_id" ucd="meta.id;meta.main">
+        <DESCRIPTION>Gaia DR3 unique source identifier. Note that this *cannot* be matched against the DR1 or DR2 source_ids.</DESCRIPTION>
+        <VALUES null="-1">
+          <MIN value="1511828647680"/>
+          <MAX value="6917528993283204480"/>
+        </VALUES>
+      </FIELD>
+      <FIELD ID="ra" datatype="double" name="ra" ref="system" ucd="pos.eq.ra;meta.main" unit="deg">
+        <DESCRIPTION>Barycentric Right Ascension in ICRS at epoch J2016.0</DESCRIPTION>
+        <VALUES>
+          <MIN value="1.6327128351173464e-06"/>
+          <MAX value="359.9999839297149"/>
+        </VALUES>
+      </FIELD>
+      <FIELD ID="dec" datatype="double" name="dec" ref="system" ucd="pos.eq.dec;meta.main" unit="deg">
+        <DESCRIPTION>Barycentric Declination in ICRS at epoch J2016.0</DESCRIPTION>
+        <VALUES>
+          <MIN value="-89.855906626967"/>
+          <MAX value="89.8088601480769"/>
+        </VALUES>
+      </FIELD>
+      <FIELD ID="ra_error" datatype="float" name="ra_error" ucd="stat.error;pos.eq.ra" unit="mas">
+        <DESCRIPTION>Standard error of ra (with cos δ applied).</DESCRIPTION>
+        <VALUES>
+          <MIN value="0.003892327"/>
+          <MAX value="99.96757"/>
+        </VALUES>
+      </FIELD>
+      <FIELD ID="dec_error" datatype="float" name="dec_error" ucd="stat.error;pos.eq.dec" unit="mas">
+        <DESCRIPTION>Standard error of dec</DESCRIPTION>
+        <VALUES>
+          <MIN value="0.0044713337"/>
+          <MAX value="99.94789"/>
+        </VALUES>
+      </FIELD>
+      <FIELD ID="pmra" datatype="float" name="pmra" ref="system" ucd="pos.pm;pos.eq.ra" unit="mas/yr">
+        <DESCRIPTION>Proper motion in right ascension of the source in ICRS at J2016.0. This is the tangent plane projection (i.e., multiplied by cos(δ)) of the proper motion vector in the direction of increasing right ascension.</DESCRIPTION>
+        <VALUES>
+          <MIN value="-2290.752"/>
+          <MAX value="4002.6545"/>
+        </VALUES>
+      </FIELD>
+      <FIELD ID="pmdec" datatype="float" name="pmdec" ref="system" ucd="pos.pm;pos.eq.dec" unit="mas/yr">
+        <DESCRIPTION>Proper motion in declination at J2016.0.</DESCRIPTION>
+        <VALUES>
+          <MIN value="-5817.8003"/>
+          <MAX value="1707.6958"/>
+        </VALUES>
+      </FIELD>
+      <FIELD ID="pmra_error" datatype="float" name="pmra_error" ucd="stat.error;pos.pm;pos.eq.ra" unit="mas/yr">
+        <DESCRIPTION>Standard error of pmra</DESCRIPTION>
+        <VALUES>
+          <MIN value="0.004197777"/>
+          <MAX value="3.4274633"/>
+        </VALUES>
+      </FIELD>
+      <FIELD ID="pmdec_error" datatype="float" name="pmdec_error" ucd="stat.error;pos.pm;pos.eq.dec" unit="mas/yr">
+        <DESCRIPTION>Standard error of pmdec</DESCRIPTION>
+        <VALUES>
+          <MIN value="0.005543075"/>
+          <MAX value="3.4420853"/>
+        </VALUES>
+      </FIELD>
+      <FIELD ID="parallax" datatype="float" name="parallax" ref="system" ucd="pos.parallax" unit="mas">
+        <DESCRIPTION>Absolute barycentric stellar parallax of the source at the reference epoch J2016.0. If looking for a distance, consider joining with gedr3dist.main and using the distances from there.</DESCRIPTION>
+        <VALUES>
+          <MIN value="-187.0294"/>
+          <MAX value="269.0573"/>
+        </VALUES>
+      </FIELD>
+      <FIELD ID="parallax_error" datatype="float" name="parallax_error" ucd="stat.error;pos.parallax" unit="mas">
+        <DESCRIPTION>Standard error of parallax</DESCRIPTION>
+        <VALUES>
+          <MIN value="0.007283376"/>
+          <MAX value="5.5755367"/>
+        </VALUES>
+      </FIELD>
+      <FIELD ID="phot_g_mean_mag" datatype="float" name="phot_g_mean_mag" ucd="phot.mag;em.opt;stat.mean" unit="mag">
+        <DESCRIPTION>Mean magnitude in the G band. This is computed from the G-band mean flux applying the magnitude zero-point in the Vega scale. To obtain error estimates, see phot_g_mean_flux_over_error.</DESCRIPTION>
+        <VALUES>
+          <MIN value="1.7732803"/>
+          <MAX value="22.75072"/>
+        </VALUES>
+      </FIELD>
+      <FIELD ID="phot_g_mean_flux_over_error" datatype="float" name="phot_g_mean_flux_over_error" ucd="stat.snr;phot.flux;em.opt;stat.mean">
+        <DESCRIPTION>Integrated mean G flux divided by its error. Errors are computed from the dispersion about the weighted mean of the input calibrated photometry.</DESCRIPTION>
+        <VALUES>
+          <MIN value="1.0823672"/>
+          <MAX value="21526.182"/>
+        </VALUES>
+      </FIELD>
+      <FIELD ID="phot_rp_mean_flux_over_error" datatype="float" name="phot_rp_mean_flux_over_error" ucd="stat.snr;phot.flux;em.opt.R">
+        <DESCRIPTION>Integrated mean RP flux divided by its error. Errors are computed from the dispersion about the weighted mean of the input calibrated photometry.</DESCRIPTION>
+        <VALUES>
+          <MIN value="0.054578356"/>
+          <MAX value="42829156.0"/>
+        </VALUES>
+      </FIELD>
+      <FIELD ID="phot_rp_mean_mag" datatype="float" name="phot_rp_mean_mag" ucd="phot.mag;em.opt.R" unit="mag">
+        <DESCRIPTION>Mean magnitude in the integrated RP band. This is computed from the RP-band mean flux applying the magnitude zero-point in the Vega scale. To obtain error estimates, see phot_rp_mean_flux_over_error.</DESCRIPTION>
+        <VALUES>
+          <MIN value="1.9687437"/>
+          <MAX value="24.64073"/>
+        </VALUES>
+      </FIELD>
+      <FIELD ID="phot_bp_mean_flux_over_error" datatype="float" name="phot_bp_mean_flux_over_error" ucd="stat.snr;phot.flux;em.opt.B">
+        <DESCRIPTION>Integrated mean BP flux divided by its error. Errors are computed from the dispersion about the weighted mean of the input calibrated photometry.</DESCRIPTION>
+        <VALUES>
+          <MIN value="0.055792775"/>
+          <MAX value="37971016.0"/>
+        </VALUES>
+      </FIELD>
+      <FIELD ID="phot_bp_mean_mag" datatype="float" name="phot_bp_mean_mag" ucd="phot.mag;em.opt.B" unit="mag">
+        <DESCRIPTION>Mean magnitude in the integrated BP band. This is computed from the BP-band mean flux applying the magnitude zero-point in the Vega scale. To obtain error estimates, see phot_bp_mean_flux_over_error.</DESCRIPTION>
+        <VALUES>
+          <MIN value="2.3980012"/>
+          <MAX value="25.31606"/>
+        </VALUES>
+      </FIELD>
+      <FIELD ID="phot_bp_rp_excess_factor" datatype="float" name="phot_bp_rp_excess_factor" ucd="stat.fit.goodness">
+        <DESCRIPTION>BP/RP excess factor estimated from the comparison of the sum of integrated BP and RP fluxes with respect to the flux in the G band. This measures the excess of flux in the BP and RP integrated photometry with respect to the G band. This excess is believed to be caused by background and contamination issues affecting the BP and RP data. Therefore a large value of this factor for a given source indicates systematic errors in the BP and RP photometry.</DESCRIPTION>
+        <VALUES>
+          <MIN value="0.05097184"/>
+          <MAX value="1726.6704"/>
+        </VALUES>
+      </FIELD>
+      <FIELD ID="astrometric_excess_noise" datatype="float" name="astrometric_excess_noise" ucd="stat.fit.goodness" unit="mas">
+        <DESCRIPTION>This is the excess noise of the source, measuring the disagreement, expressed as an angle, between the observations of a source and the best-fitting standard astrometric model (using five astrometric parameters). A value of 0 signifies a well-behaved source, a positive value signifies that the residuals are larger than expected.</DESCRIPTION>
+        <VALUES>
+          <MIN value="0.0"/>
+          <MAX value="842.469"/>
+        </VALUES>
+      </FIELD>
+      <FIELD ID="radial_velocity" datatype="float" name="radial_velocity" ref="system" ucd="spect.dopplerVeloc.opt;em.opt.I" unit="km/s">
+        <DESCRIPTION>Spectroscopic radial velocity in the solar barycentric reference frame. For stars brighter than about 12 mag, this is the median of all single-epoch measurements. For fainter stars, RV estimation is from a co-added spectrum.</DESCRIPTION>
+        <VALUES>
+          <MIN value="-861.1135"/>
+          <MAX value="859.6903"/>
+        </VALUES>
+      </FIELD>
+      <FIELD ID="radial_velocity_error" datatype="float" name="radial_velocity_error" ucd="stat.error;spect.dopplerVeloc" unit="km/s">
+        <DESCRIPTION>Error in radial_velocity; this is the error of the median for bright stars. For faint stars, it is derived from the cross-correlation function.</DESCRIPTION>
+        <VALUES>
+          <MIN value="0.1130009"/>
+          <MAX value="39.996315"/>
+        </VALUES>
+      </FIELD>
+      <FIELD ID="pseudocolour" datatype="float" name="pseudocolour" ucd="em.wavenumber;phot.color" unit="um**-1">
+        <DESCRIPTION>Effective wavenumber of the source estimated in the final astrometric processing. The pseudocolour is the astrometrically estimated effective wavenumber of the photon flux distribution in the astrometric (G) band, estimated from the chromatic displacements of image centroids. The field is empty when chromaticity was instead taken into account using the photometrically determined ν_eff given in the field nu_eff_used_in_astrometry.</DESCRIPTION>
+        <VALUES>
+          <MIN value="-2.2237651"/>
+          <MAX value="5.086224"/>
+        </VALUES>
+      </FIELD>
+      <FIELD ID="astrometric_params_solved" datatype="short" name="astrometric_params_solved" ucd="meta.code">
+        <DESCRIPTION>This is a binary code indicating which astrometric parameters were estimated for the source. A set bit means the parameter was estimated. The least-significant bit represents α, the next bits δ, parallax, PM(RA) and PM(De). For Gaia DR2 the only relevant values are 31 (all five parameters solved) and 3 (only positions).</DESCRIPTION>
+        <VALUES null="-1">
+          <MIN value="3"/>
+          <MAX value="95"/>
+        </VALUES>
+      </FIELD>
+      <FIELD ID="random_index" datatype="long" name="random_index" ucd="meta.code">
+        <DESCRIPTION>Random index that can be used to deterministically select subsets</DESCRIPTION>
+        <VALUES>
+          <MIN value="0"/>
+          <MAX value="1811709740"/>
+        </VALUES>
+      </FIELD>
+      <FIELD ID="ruwe" datatype="float" name="ruwe" ucd="stat.weight">
+        <DESCRIPTION>Renormalized Unit Weight Error; this is a revised measure for the overall consistency of the solution as defined by GAIA-C3-TN-LU-LL-124-01. A suggested cut on this is RUWE &lt;1.40) See the note for details.</DESCRIPTION>
+        <VALUES>
+          <MIN value="0.22475277"/>
+          <MAX value="93.41374"/>
+        </VALUES>
+      </FIELD>
+      <DATA>
+        <BINARY>
+          <STREAM encoding="base64">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</STREAM>
+        </BINARY>
+      </DATA>
+    </TABLE>
+  </RESOURCE>
+</VOTABLE>

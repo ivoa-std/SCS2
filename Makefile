@@ -30,7 +30,7 @@ FIGURES = role_diagram.svg timeline.tikz.tex
 VECTORFIGURES =timeline.tikz.tex
 
 # Additional files to distribute (e.g., CSS, schema files, examples...)
-AUX_FILES = ConeSearch-v1.1.xsd
+AUX_FILES = ConeSearch-v1.1.xsd sample-response.xml sample-record-single.xml
 
 -include ivoatex/Makefile
 
@@ -42,8 +42,21 @@ ivoatex/Makefile:
 timeline.tikz.pdf: timeline.tikz.tex
 	pdflatex -jobname=$*.tikz '\documentclass{article}\usepackage[active,tightpage]{preview}\usepackage{chronology}\PreviewEnvironment{chronology}\begin{document}\input '$<'\end{document}'
 
+sample-response.xml:
+	curl -s -FRA=145.1 -FDEC=-78.2 -FSR=0.01\
+		http://dc.g-vo.org/gaia/q3/cone2/scs2.xml | xmlstarlet fo > $@
+
+sample-record-single.xml:
+	curl -s "http://dc.g-vo.org/oai.xml?verb=GetRecord&metadataPrefix=ivo_vor&identifier=ivo://org.gavo.dc/gaia/q3/cone" \
+		| xmlstarlet sel --indent -N ri=http://www.ivoa.net/xml/RegistryInterface/v1.0 -t -c //ri:Resource \
+		| xmlstarlet fo > $@
+
 STILTS ?= stilts
 SCHEMA_FILE=ConeSearch-v1.1.xsd
 
 test:
 	@$(STILTS) xsdvalidate $(SCHEMA_FILE)
+	@$(STILTS) votlint sample-response.xml
+	@$(STILTS) xsdvalidate \
+		schemaloc="http://www.ivoa.net/xml/ConeSearch/v1.0=$(SCHEMA_FILE)" \
+		sample-record-single.xml
