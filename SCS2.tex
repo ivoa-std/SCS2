@@ -2,6 +2,8 @@
 \input tthdefs
 \input gitmeta
 
+\tolerance=2000
+
 \hyphenation{acc-ess-URL}
 
 \lstset{flexiblecolumns=true,basicstyle=\ttfamily,
@@ -80,14 +82,14 @@ rules for protocols that have been developed since its definition.
 These are now defined in the Data Access Layer Working Group's DALI
 standard \citep{2017ivoa.spec.0517D}.
 
-Also, severals years after ConeSearch-1, the IVOA defined the
+Also, several years after ConeSearch-1, the IVOA defined the
 Table Access Protocol TAP \citep{2019ivoa.spec.0927D} for advanced
 operations with relational tables (of which astronomical catalogues are
 a special case).
 However, a niche for a cone
 search-like protocol still exists: something that, on the server side,
 can be implemented ad-hoc, and on the client side is dead simple to use
-provided you have a VOTable parser.
+provided one has a VOTable parser.
 
 The remainder of this document first explores the use cases in a bit
 more detail, then defines the endpoints required for an SCS2 service and
@@ -147,7 +149,7 @@ this document.
 
 \item[TAP] \citet{2019ivoa.spec.0927D} is the IVOA's protocol for
 running advanced queries against tables of all sorts.  Its existence
-allows us to ignore more advanced use cases by defering them to TAP.
+allows us to ignore more advanced use cases by deferring them to TAP.
 
 \item[DataLink] \citet{2023ivoa.spec.1215B} offers a mechanism to link
 advanced data products, in particular parts of a catalogue row's
@@ -244,7 +246,7 @@ of the service URL and appending the literal ``capabilities''.
 
 \section{Parameters in SCS2}
 
-SCS2 services are required to fail a request passes a parameter they do
+SCS2 services are required to fail if a request passes a parameter they do
 not support, regardless of whether or not values are bound to such a
 parameter.
 
@@ -324,7 +326,9 @@ always return the same set of columns independently of the value of
 SCS2 services may support a \verb|POS| parameter as defined by SIAP2
 \citep{2015ivoa.spec.1223D}, except that for SCS2, this is a
 non-repeatable parameter.  For the benefit of non-SCS2 clients, this
-parameter should have a UCD of \ucd{pos.outline}.
+parameter should have a UCD of \ucd{pos.outline}.  The semantics of POS
+is that only catalogue items are returned that are within the geometry
+specified.
 
 \subsubsection{Optional: Multicone via UPLOAD}
 
@@ -356,7 +360,7 @@ parameters.
 
 \subsection{Error Conditions with Parameters}
 
-When clients pass parameters to an SCS2 services that it does not support,
+When clients pass parameters to an SCS2 service that it does not support,
 it must respond with a 400 Bad Request HTTP status code and a DALI error
 message explaining which parameter caused the problem.
 
@@ -366,12 +370,7 @@ message explaining what parameter was duplicated.
 
 A service must reject queries that do not pass exactly one
 cone-constraining parameter set (i.e., either RA, DEC, SR or POS or
-UPLOAD).
-
-Clients must pass exactly one position-constraining pararameter in
-a request, i.e., either RA, DEC, SR, or (on supporting services) POS or
-UPLOAD.  If the do, the
-service must respond with a 400 Bad Request HTTP status and a DALI error
+UPLOAD with a 400 Bad Request HTTP status and a DALI error
 message explaining what conflict caused the error.
 
 
@@ -443,7 +442,8 @@ access URL in this interface must be the URL of the \verb|scs2| endpoint
 defined in sect.~\ref{sect:endpoints}.  All
 accepted parameters, including the mandatory ones, must be declared
 within this interface element.  Even for SCS2-defined parameters, empty
-or missing param/description elements are not allowed.  All free
+or missing \xmlel{param}/\xmlel{description} elements
+are not allowed.  All free
 parameters should come with a UCD.
 
 The capability element with the SCS-2.0 \xmlel{standardID} should be of
@@ -498,7 +498,8 @@ that SCS2 takes over from ConeSearch-1.  Because the necessary
 basic schemas had not been in place at the time of ConeSearch-1, the
 corresponding registry extension was defined in SimpleDALRegExt
 \citep{2022ivoa.spec.0222D}.  For SCS2, the normative extension is the
-one coming with the specification.  For now, it is unchanged over what
+one coming with the specification.  For now, except for minor adaptation
+of the documentation it is unchanged over what
 was in SimpleDALRegExt 1.2.
 
 The namespace associated with the ConeSearch extension schema is
@@ -720,7 +721,7 @@ accessURL element)
 \appendix
 \section{Usage Patterns (non-normative)}
 
-In general, it is discouraged for clients to do registry queries
+In general, it is discouraged for clients to do Registry queries
 constraining their results to SCS2 services
 when what their users presumably want is
 data discovery; see the DDC note \citep{2019ivoa.spec.0520D} for a
@@ -732,8 +733,8 @@ validator might have every reason to look exclusively for SCS2
 capabilities, for instance.} would look like this:
 
 \begin{itemize}
-\item Perform a registry search with non-capability constraints (e.g.,
-on keywords, UCDs, authors).  In the query, retrieve the available
+\item Perform a Registry search with non-capability constraints (e.g.,
+on keywords, UCDs, authors, coverage).  In the query, retrieve the available
 capabilities, e.g., using \verb|ivo_string_agg| UDF.
 
 \item If there is a capability with one of SCS2's standard ids (either
@@ -749,7 +750,7 @@ standard identifier.
 the declared parameters to the user\footnote{At the time of writing, we
 are still missing an interoperable method to declare column statistics,
 which admittedly are important to build meainingful UIs.
-\citet{note:colstatnote} suggests a conceivable mechanism, and the
+\citet{note:colstatnote} suggest a conceivable mechanism, and the
 authors expect that a similar scheme will be adopted soon in
 VODataService, at which point these statistics should be exposed to
 users or APIs.}
@@ -765,7 +766,7 @@ Against that, clients explicitly planning to have an ``SCS2 client''
 following:
 
 \begin{itemize}
-\item Perform a registry search with all normal constraints, additionally
+\item Perform a Registry search with all normal constraints, additionally
 constraining \verb|standard_id| in \verb|rr.capability| via a constraint
 like
 \begin{lstlisting}
@@ -916,7 +917,7 @@ use of ConeSearch-1 services and the clients that issue requests against
 them.  From this, an impact assessment is derived: how many users are on
 clients that do not know how to deal with SCS2?  What clients are these?
 The transition team should investigate means to reach out to users or
-communities with particular migraton problems, for instance by
+communities with particular migration problems, for instance by
 organising ``Migration weeks'' when several major data centres serve
 errors to ConeSearch-1 clients.
 
@@ -945,8 +946,8 @@ the transition and then disbands.
 \tikzfigure{timeline}
 \caption{A graphical representation of the transition from ConeSearch-1
 to SCS2 according to the optimistic scenario.  The figure was created
-assuming in January 2026; we are aware the initial WD has already come
-later than that.}
+assuming \ts{final-WD} in January 2026; we are aware the
+initial WD has already come later than that.}
 \label{fig:timeline}
 \end{figure}
 
@@ -956,30 +957,31 @@ an optimistic estimate for what they might translate to
 
 \begin{description}
 \item [\ts{final-WD}] The time of the last working draft of the SCS2
-standard; February 2026
+standard; November 2026
 
-\item[\ts{RFC}] The time SCS2 RFC starts.  May 2026
+\item[\ts{RFC}] The time SCS2 RFC starts.  March 2027
 
-\item[\ts{REC}] The time the TCG passes SCS2.  November 2026
+\item[\ts{REC}] The time the TCG passes SCS2.  August 2027
 
 \item[\ts{p90}] The time more than 90\% of the publishers of
-ConeSearch-1 services have taken up SCS2.  January 2028 (\textit{if} the
+ConeSearch-1 services have taken up SCS2.  June 2028 (\textit{if} the
 transition team actually functions)
 
 \end{description}
 
-In this optimistic scenario, we would turn off ConeSearch-1 in the
-summer of 2031.
+In this optimistic scenario, we would turn off ConeSearch-1 in
+late 2031.
 
 Clearly, this idealised time line is not strictly binding; in the end,
 the transition team will have to react to how matters actually evolve.
 It is hoped that future transition plans can build upon the experiences
-made and reported by the SCS transition team.
+made and reported by the SCS2 transition team.
 
 \section{Example Documents}
 \label{app:examples}
 
-To help implementors, this document comes with several example documents:
+To help implementors, this document comes with several (non-normative)
+example documents:
 
 \begin{itemize}
 \item A sample response\footnote{\auxiliaryurl{sample-response.xml}}.
@@ -990,7 +992,7 @@ many items that are not requried for a basic SCS2 implementation.
 parameters\footnote{\auxiliaryurl{sample-record-single.xml}}.
 The example record also contains an ConeSearch-1 capability,
 demonstrating the co-existence envisoned in the transition plan.
-It furthermore already has the stat element that is expected to
+It furthermore already has the \xmlel{stat} element that is expected to
 be defined in VODataService 1.3; in particular for its application with
 input parameters, it is important for SCS2.
 
