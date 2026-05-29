@@ -1,0 +1,88 @@
+<ri:Resource
+  xsi:type="vstd:Standard"
+  created="2026-05-29T07:45:00"
+  updated="2026-05-29T07:45:00"
+  status="active"
+  xmlns:vr="http://www.ivoa.net/xml/VOResource/v1.0"
+  xmlns:vstd="http://www.ivoa.net/xml/StandardsRegExt/v1.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:ri="http://www.ivoa.net/xml/RegistryInterface/v1.0"
+  xsi:schemaLocation="http://www.ivoa.net/xml/VOResource/v1.0
+    https://www.ivoa.net/xml/VOResource/v1.0
+  http://www.ivoa.net/xml/StandardsRegExt/v1.0
+    https://www.ivoa.net/xml/StandardsRegExt/v1.0
+  http://www.ivoa.net/xml/VOResource/v1.0
+    https://www.ivoa.net/xml/VOResource/v1.0">
+
+  <title>IVOA SCS: Simple Cone Searches for Astronomical Catalogues</title> <!-- title as given on the standard's title page -->
+  <shortName>SCS2</shortName> <!-- this should be your DOCNAME -->
+  <!-- put the "short name" of your standard after std/: -->
+  <identifier>ivo://ivoa.net/std/SCS2</identifier>
+  <!-- <altIdentifier>doi:Look up on ADS once your standard has made
+    it there and then update this. </altIdentifier> -->
+  <curation>
+    <publisher>IVOA</publisher>
+
+    <!-- author name(s), preferably in Last, I. form; one creator
+    element per author -->
+    <creator>
+      <name>Demleitner, M.</name>
+    </creator>
+
+    <!-- this should be the date of the last recommendation -->
+    <date role="Updated">2026-05-29</date>
+    <version>2.0</version> <!-- the document version -->
+    <contact>
+      <name>IVOA DAL WG</name> <!-- typcially, the name of the main WG/IG-->
+      <email>dal@ivoa.net</email> <!-- typically, the mailing list address -->
+    </contact>
+  </curation>
+  <content>
+    <subject>virtual-observatories</subject>
+
+    <description>
+The Simple Cone Search Protocol is an IVOA protocol designed to support publishing astronomical catalogues to the Virtual Observatory with modest implementation requirements, and querying them using any language that has an http library and a VOTable parser.
+
+This document defines query parameters, response formats, and metadata standards. The present specification is incompatible with the IVOA's ConeSearch version 1 protocol. We therefore also propose a plan for how to transition between the two major versions.
+    </description>
+    <referenceURL>https://ivoa.net/documents/SCS2/</referenceURL>
+    <type>Other</type>
+    <contentLevel>Research</contentLevel>
+  </content>
+
+  <!-- Version(s) of the standard that should be used.  In general,
+    you'll only have exactly one endorsedVersion with status="rec",
+    but situations are imaginable where you have multiple endorsed
+    versions, perhaps even with non-rec status (though you should probably
+    ask the TCG before going there). -->
+  <endorsedVersion status="wd">1.0</endorsedVersion>
+
+  <!-- If your standard provides schema file(s), list their canonical
+    URL(s) here.  Only list the most recent versions. Otherwise, just
+    delete this element. -->
+  <schema namespace="http://www.ivoa.net/xml/ConeSearch/v1.0">
+    <location>http://www.ivoa.net/xml/ConeSearch/v1.0</location>
+    <description>A Registry extension defining a capability
+      type supplying SCS-specific metadata.
+    </description>
+  </schema>
+
+  <!-- You can furthermore have as many key-value pairs as you want.
+    Service standard authors will need this to comply with Identifier 2.0's
+    recommendation for standardId
+    (https://www.ivoa.net/documents/IVOAIdentifiers/20150709/PR-Identifiers-2.0-20150709.html#tth_sEc4.2) -->
+  <key>
+    <name>query-2.0</name>
+    <description>The fragment for the standard id for an SCS2 capability
+    	in a registry record.
+    </description>
+  </key>
+  <key>
+    <name>query-2.0-aux</name>
+    <description>The fragment for the standard id for an SCS2 auxiliary
+      capability (i.e., one referencing an SCS2 service defined in a
+      different registry record).
+    </description>
+  </key>
+
+</ri:Resource>
