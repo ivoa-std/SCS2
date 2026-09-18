@@ -321,27 +321,29 @@ default for \verb|VERB|.   It is legal to
 always return the same set of columns independently of the value of
 \verb|VERB|.
 
-\subsubsection{Optional: SIAP2-Compatible Geometry}
+\subsubsection{Mandatory: SIAP2-Compatible CIRCLE}
 
-SCS2 services may support a \verb|POS| parameter as defined by SIAP2
-\citep{2015ivoa.spec.1223D}, except that for SCS2, this is a
-non-repeatable parameter.  For the benefit of non-SCS2 clients, this
-parameter should have a UCD of \ucd{pos.outline}.  The semantics of POS
-is that only catalogue items are returned that are within the geometry
-specified.
+SCS2 services must support a \verb|CIRCLE| parameter as defined by SIAP2
+\citep{2015ivoa.spec.1223D}; as in SIAP2, this is a repeatable
+parameter to support Multi-Cone queries.  Clients must be prepared that
+there is a limit to the number of CIRCLE parameters a service is
+prepared to accept, and this number may be one; services receiving more
+CIRCLE-s than they are willing to process must not return even partial
+results but instead an error with a message starting with
+\verb|UsageFault:|.
 
-\subsubsection{Optional: Multicone via UPLOAD}
+Clients can inspect the maximum number of CIRCLE parameters a service is
+willing to process in the capabilities \xmlel{maxCone} child.  This
+feature is not intended to support massive crossmatches even if a
+service does not define a maximum number of CIRCLE-s.  Typcial limits of
+request body sizes in the infrastructure are of order of Megabytes,
+which would translate into a typical practical limit of a few $10^4$
+cones.
 
-SCS2 services may support an \texttt{UPLOAD} parameter as per DALI
-sect.~4.3.5.  Only a single table in VOTable format may be uploaded, and
-its columns must be named RA, DEC, and SR.  Services implementing
-\verb|UPLOAD|
+Queries with CIRCLE
 must produce a VOTable with a single result table containing the union
-of a series of SCS queries with the cones defined by the rows of the
-uploaded table.  Duplicate rows are not allowed.  Table uploads from
-http(s) URIs and inline uploads must be supported if a service supports
-the \texttt{UPLOAD} parameter.
-
+of a series of SCS queries with the cones defined the CIRCLE parameters.
+Duplicate rows are not allowed.
 
 
 \subsection{Free Parameters}
@@ -369,8 +371,8 @@ service must respond with a 400 Bad Request HTTP status and a DALI error
 message explaining what parameter was duplicated.
 
 A service must reject queries that do not pass exactly one
-cone-constraining parameter set (i.e., either RA, DEC, SR or POS or
-UPLOAD with a 400 Bad Request HTTP status and a DALI error
+cone-constraining parameter set (i.e., either RA, DEC, SR or CIRCLE)
+with a 400 Bad Request HTTP status and a DALI error
 message explaining what conflict caused the error.
 
 
@@ -512,7 +514,7 @@ the canonical prefix is \xmlel{cs:}.
    to describe a service's support for the Simple Cone Search protocol;
    it is defined as follows:
 
-% GENERATED: !schemadoc ConeSearch-v1.1.xsd ConeSearch
+% GENERATED: !schemadoc ConeSearch-v1.2.xsd ConeSearch
 \begin{generated}
 \begingroup
         \renewcommand*\descriptionlabel[1]{%
@@ -608,7 +610,7 @@ purposes.
 The \xmlel{cs:Query} type captures the different components of an SCS
 query into separate elements, as defined below:
 
-% GENERATED: !schemadoc ConeSearch-v1.1.xsd Query
+% GENERATED: !schemadoc ConeSearch-v1.2.xsd Query
 \begin{generated}
 \begingroup
         \renewcommand*\descriptionlabel[1]{%

@@ -5,7 +5,7 @@
            xmlns:vm="http://www.ivoa.net/xml/VOMetadata/v0.1"
            targetNamespace="http://www.ivoa.net/xml/ConeSearch/v1.0"
            elementFormDefault="unqualified" attributeFormDefault="unqualified"
-           version="1.1-wd1">
+           version="1.2-wd2">
 
    <xs:annotation>
       <xs:appinfo>
@@ -88,9 +88,28 @@
                         matched record that can be used to test the
                         service.
                      </xs:documentation>
+                     <xs:documentation>
+                        Using testQuery is mildly deprecated.  In new
+                        records, prefer vs:ParamHTTP's testQuery.
+                     </xs:documentation>
                   </xs:annotation>
                </xs:element>
 
+               <xs:element name="maxCone" type="xs:integer"
+                    minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>
+                        The maximum number of CIRCLE parameters the
+                        service is prepared to process in a single request.
+                     </xs:documentation>
+                     <xs:documentation>
+                        A missing maxCone declaration means that there
+                        is no limit enforced.  Clients should still not
+                        expect that requests with bodies exceeding a
+                        few megabytes will successfully be processed.
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
             </xs:sequence>
          </xs:extension>
       </xs:complexContent>
