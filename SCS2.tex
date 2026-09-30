@@ -187,7 +187,7 @@ To briefly map these use cases to features covered by this standard:
 \item Immediately start working: VOTable response format
 \item Not require external documentation: units, UCDs, and descriptions
 on all columns
-\item Positional contraint: The mandatory RA, DEC, SR parameters
+\item Positional contraint: The mandatory CIRCLE parameter
 \item Other parts of catalogues: The possibility to declare further
 parameters and their standard DALI interval syntax
 \item Locate a catalogue: Our use of the VO Registry, including
@@ -252,28 +252,30 @@ parameter.
 
 \subsection{Standard Parameters}
 
-\subsubsection{Mandatory: The Cone Constraint}
+\subsubsection{Mandatory: CIRCLE}
 
-As in ConeSearch-1, SCS2 services must support positional constraints.  They are
-given as a ``cone'', i.e., a centre and a search radius.  The following
-parameters -- backwards-compatible with ConeSearch-1 -- are required for that:
+SCS2 services must support a \verb|CIRCLE| parameter as defined by SIAP2
+\citep{2015ivoa.spec.1223D}; as in SIAP2, this is a repeatable
+parameter to support Multi-Cone queries.  Services may limit
+the number CIRCLE parameters a service will
+accept, and this limit may be one; services receiving more
+CIRCLE-s than they are willing to process must not return partial
+results but instead an error with a message starting with
+\verb|UsageFault:|.  Clients can inspect the maximum number of CIRCLE
+parameters a service is willing to process in the capabilities
+\xmlel{maxCone} child.
 
-\begin{description}
-\item[RA] -- a right ascension in degrees, understood to be ICRS at
-whatever epoch the catalogue is in.
-\item[DEC] -- a declination in degrees, understood to be ICRS at
-whatever epoch the catalogue is in.
-\item[SR] -- a search radius in degrees.
-\end{description}
+This feature is not intended to support massive crossmatches even if a
+service does not define a maximum number of CIRCLE-s.  Typcial limits of
+request body sizes in the infrastructure are of order of Megabytes,
+which would translate into a typical practical limit of a few $10^4$
+cones.
 
-All these parameters are single-valued.
+Queries with CIRCLE
+must produce a VOTable with a single result table containing the union
+of a series of SCS queries with the cones defined the CIRCLE parameters.
+Duplicate rows are not allowed.
 
-When evaluating the cone constraint, services must compute spherical
-distances to the cone center and only include objects closer to the
-centre than SR.  For the benefit of
-non-SCS2 clients, services should declare these
-input parameters with the UCDs \ucd{pos.eq.ra}, \ucd{pos.eq.dec}, and
-\ucd{pos.angDistance}, respectively.
 
 \subsubsection{Mandatory: Table Selection}
 
@@ -336,30 +338,6 @@ default for \verb|VERB|.   It is legal to
 always return the same set of columns independently of the value of
 \verb|VERB|.
 
-\subsubsection{Mandatory: SIAP2-Compatible CIRCLE}
-
-SCS2 services must support a \verb|CIRCLE| parameter as defined by SIAP2
-\citep{2015ivoa.spec.1223D}; as in SIAP2, this is a repeatable
-parameter to support Multi-Cone queries.  Clients must be prepared that
-there is a limit to the number of CIRCLE parameters a service is
-prepared to accept, and this number may be one; services receiving more
-CIRCLE-s than they are willing to process must not return even partial
-results but instead an error with a message starting with
-\verb|UsageFault:|.
-
-Clients can inspect the maximum number of CIRCLE parameters a service is
-willing to process in the capabilities \xmlel{maxCone} child.  This
-feature is not intended to support massive crossmatches even if a
-service does not define a maximum number of CIRCLE-s.  Typcial limits of
-request body sizes in the infrastructure are of order of Megabytes,
-which would translate into a typical practical limit of a few $10^4$
-cones.
-
-Queries with CIRCLE
-must produce a VOTable with a single result table containing the union
-of a series of SCS queries with the cones defined the CIRCLE parameters.
-Duplicate rows are not allowed.
-
 
 \subsection{Free Parameters}
 
@@ -378,17 +356,14 @@ parameters.
 \subsection{Error Conditions with Parameters}
 
 When clients pass parameters to an SCS2 service that it does not support,
-it must respond with a 400 Bad Request HTTP status code and a DALI error
-message explaining which parameter caused the problem.
+it must respond with a 400 Bad Request HTTP status code and an error
+message starting with \verb|UsageError:|
+explaining which parameter caused the problem.
 
 When clients pass multiple values for single-valued parameters, the
-service must respond with a 400 Bad Request HTTP status and a DALI error
-message explaining what parameter was duplicated.
-
-A service must reject queries that do not pass exactly one
-cone-constraining parameter set (i.e., either RA, DEC, SR or CIRCLE)
-with a 400 Bad Request HTTP status and a DALI error
-message explaining what conflict caused the error.
+service must respond with a 400 Bad Request HTTP status and an error
+message starting with \verb|UsageError:|
+explaining which parameter caused the problem.
 
 
 \section{Protocol Responses}
@@ -756,7 +731,7 @@ capabilities, e.g., using \verb|ivo_string_agg| UDF.
 
 \item If there is a capability with one of SCS2's standard ids (either
 query or query-aux), offer a UI to use the service or immediately run a
-simple cone search based on the the mandatory parameters (RA, DEC, SR).
+simple cone search based on the CIRCLE parameter.
 
 \item To produce a UI, fetch the \texttt{capabilities} sibling of the
 access URL discovered.  Enumerate the capability elements with an SCS2
