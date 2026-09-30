@@ -538,6 +538,98 @@ the canonical prefix is \xmlel{cs:}.
    it is defined as follows:
 
 % GENERATED: !schemadoc ConeSearch-v1.2.xsd ConeSearch
+\begin{generated}
+\begingroup
+        \renewcommand*\descriptionlabel[1]{%
+        \hbox to 5.5em{\emph{#1}\hfil}}\vspace{2ex}\noindent\textbf{\xmlel{cs:ConeSearch} Type Schema Documentation}
+
+\noindent{\small{}The capabilities of a Cone Search implementation.\par}
+
+\vspace{1ex}\noindent\textbf{\xmlel{cs:ConeSearch} Type Schema Definition}
+
+\begin{lstlisting}[language=XML,basicstyle=\footnotesize]
+<xs:complexType name="ConeSearch" >
+  <xs:complexContent >
+    <xs:extension base="vr:Capability" >
+      <xs:sequence >
+        <xs:element name="maxSR" type="xs:float" minOccurs="0" maxOccurs="1" />
+        <xs:element name="maxRecords" type="xs:positiveInteger" minOccurs="0"
+                  maxOccurs="1" />
+        <xs:element name="verbosity" type="xs:boolean" />
+        <xs:element name="maxCone" type="xs:positiveInteger" minOccurs="0"
+                  maxOccurs="1" />
+        <xs:element name="testQuery" type="cs:Query" minOccurs="0"
+                  maxOccurs="1" />
+      </xs:sequence>
+    </xs:extension>
+  </xs:complexContent>
+</xs:complexType>
+\end{lstlisting}
+
+\vspace{0.5ex}\noindent\textbf{\xmlel{cs:ConeSearch} Extension Metadata Elements}
+
+\begingroup\small\begin{bigdescription}\item[Element \xmlel{maxSR}]
+\begin{description}
+\item[Type] floating-point number: \xmlel{xs:float}
+\item[Meaning] The largest search radius, in degrees, that will be
+                        accepted by the service without returning an error
+                        condition.  Not providing this element or
+                        specifying a value of 180 indicates that there
+                        is no restriction.
+\item[Occurrence] optional
+\item[Comment] Not providing a value is the prefered way to indicate
+                        that there is no restriction.
+
+\end{description}
+\item[Element \xmlel{maxRecords}]
+\begin{description}
+\item[Type] \xmlel{xs:positiveInteger}
+\item[Meaning] The largest number of records that the service will
+                        return.
+\item[Occurrence] optional
+\item[Comment] This, in effect, is a hard limit on how far clients
+                        can raise MAXREC.
+
+\end{description}
+\item[Element \xmlel{verbosity}]
+\begin{description}
+\item[Type] boolean (true/false): xs:boolean
+\item[Meaning] True if the service will vary the column set
+                        returned on varying values of VERB;
+                        false otherwise.
+\item[Occurrence] required
+
+\end{description}
+\item[Element \xmlel{maxCone}]
+\begin{description}
+\item[Type] \xmlel{xs:positiveInteger}
+\item[Meaning] A number of CIRCLE parameters the service will
+                        accept.
+\item[Occurrence] optional
+\item[Comment] A service can accept more than that number, but it
+                        must not fail because of too many cone constraints
+                        if clients pass maxCone or less CIRCLE parameters.
+                        While services should try to support multicone
+                        searches, it is legal for maxCone to be one.
+
+\end{description}
+\item[Element \xmlel{testQuery}]
+\begin{description}
+\item[Type] composite: \xmlel{cs:Query}
+\item[Meaning] Deprecated; use vs:ParamHTTP's testQuery element
+                        instead.
+\item[Occurrence] optional
+\item[Comment] Using testQuery is mildly deprecated.  In new
+                        records, prefer vs:ParamHTTP's testQuery.
+
+\end{description}
+
+
+\end{bigdescription}\endgroup
+
+\endgroup
+\end{generated}
+
 % /GENERATED
 
 For giving a test query (used by validators and similar infrastructure
