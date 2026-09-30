@@ -223,6 +223,7 @@ If you use public Gaia DR3 data in a paper, please take note of
       <dec>40.9302920611415004</dec>
       <sr>0.001</sr>
     </testQuery>
+    <maxCone>200</maxCone>
   </capability>
   <capability standardID="ivo://ivoa.net/scs2#query-2.0" xsi:type="cs:ConeSearch">
     <interface xsi:type="vs:ParamHTTP">

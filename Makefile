@@ -52,7 +52,7 @@ sample-record-single.xml:
 		| xmlstarlet fo > $@
 
 STILTS ?= stilts
-SCHEMA_FILE=ConeSearch-v1.1.xsd
+SCHEMA_FILE=ConeSearch-v1.2.xsd
 
 test:
 	@$(STILTS) xsdvalidate $(SCHEMA_FILE)
