@@ -5,7 +5,7 @@
            xmlns:vm="http://www.ivoa.net/xml/VOMetadata/v0.1"
            targetNamespace="http://www.ivoa.net/xml/ConeSearch/v1.0"
            elementFormDefault="unqualified" attributeFormDefault="unqualified"
-           version="1.1-wd1">
+           version="1.1-wd2">
 
    <xs:annotation>
       <xs:appinfo>
@@ -80,13 +80,29 @@
                   </xs:annotation>
                </xs:element>
 
+               <xs:element name="maxCone" type="xs:positiveInteger"
+                     minOccurs="0" maxOccurs="1">
+                  <xs:annotation>
+                     <xs:documentation>
+                        A number of CIRCLE parameters the service will
+                        accept.
+                     </xs:documentation>
+                     <xs:documentation>
+                        A service can accept more than that number, but it
+                        must not fail because of too many cone constraints
+                        if clients pass maxCone or less CIRCLE parameters.
+                        While services should try to support multicone
+                        searches, it is legal for maxCone to be one.
+                     </xs:documentation>
+                  </xs:annotation>
+               </xs:element>
+
                <xs:element name="testQuery" type="cs:Query"
                            minOccurs="0" maxOccurs="1">
                   <xs:annotation>
                      <xs:documentation>
-                        A query that will result in at least one
-                        matched record that can be used to test the
-                        service.
+                        Deprecated; use vs:ParamHTTP's testQuery element
+                        instead.
                      </xs:documentation>
                   </xs:annotation>
                </xs:element>
