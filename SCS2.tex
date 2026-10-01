@@ -285,7 +285,17 @@ The value of \verb|TABLE| is a table name taken from the tableset. The
 parameter value must exactly match the value of the \xmlel{name} child
 of the \xmlel{table} element.  In particular, this means that when these
 are SQL delimited identifiers, the delimiters will be part of the TABLE
-parameter's value.
+parameter's value; also, if the table name in the tableset contains a
+schema part, this must be part of the TABLE value, too.  Examples:
+
+\begin{itemize}
+\item \verb|TABLE=basic| -- when the tableset has unqualified
+identifiers in its table/name children
+\item \verb|TABLE=gdr2spec.spectra| -- when the tableset includes schema
+qualification in its table/name children
+\item \verb|TABLE=IV_crossid."IV/13/do_hd"| -- when the tableset has
+schema-qualified delimited identifiers in its table/name children.
+\end{itemize}
 
 Services only offering access to a single table may accept requests without a
 \verb|TABLE| parameter but must accept it and raise an error if the table name
