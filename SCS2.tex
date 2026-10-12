@@ -23,6 +23,7 @@
 \editor{Markus Demleitner}
 
 % \previousversion[????URL????]{????Concise Document Label????}
+\previousversion[https://www.ivoa.net/documents/SCS2/20260529]{WD-2.0-20260529}
 \previousversion{This is the first public release}
 
 
@@ -382,8 +383,9 @@ client has requested a different \verb|RESPONSEFORMAT|,
 in which case none of the following constraints apply.
 
 \item Exactly one \xmlel{FIELD}, the row identifier, must have a UCD of
-\ucd{meta.id;meta.main} and must be an array of VOTable chars; this
-applies even if the original catalogue uses integer identifiers.  This
+\ucd{meta.id;meta.main}.  To ensure reliable comparisons, this field
+should be either an array of chars or have an integral type.
+This
 must be suitable as a primary key, i.e., there must not be two rows
 sharing the same row identifier.
 
@@ -961,9 +963,18 @@ declarations.\todo{Vizier?}
 
 \section{Changes from Previous Versions}
 
-No previous versions yet.
-% these would be subsections "Changes from v. WD-..."
-% Use itemize environments.
+\subsection{Changes from WD-2.0-20260529}
+
+\begin{itemize}
+\item Dropping UPLOAD and POS parameters
+\item Replacing RA, DEC, and SR with the (repeatable) CIRCLE parameter
+\item Error messages are now plain text rather than VOTable
+\item Main id can be of any type now
+\item Loosened requirements to provide ConeSearch-1 capabilities
+on SCS2 services in the transition period
+\item New maxCone item in the registry extension, deprecating
+cs:TestQuery
+\end{itemize}
 
 
 \bibliography{ivoatex/ivoabib,ivoatex/docrepo,local}
