@@ -1,6 +1,8 @@
 # ivoatex Makefile.  See http://ivoa.net/documents/notes/IVOATexDoc
 # for the targets available.
 
+SCHEMA_FILE=ConeSearch-v1.2.xsd
+
 # short name of your document (edit $DOCNAME.tex; would be like RegTAP)
 DOCNAME = SCS2
 
@@ -8,7 +10,7 @@ DOCNAME = SCS2
 DOCVERSION = 2.0
 
 # Publication date, ISO format; update manually for "releases"
-DOCDATE = 2026-11-12
+DOCDATE = 2026-10-19
 
 # What is it you're writing: NOTE, WD, PR, REC, PEN, or EN
 DOCTYPE = WD
@@ -30,7 +32,7 @@ FIGURES = role_diagram.svg timeline.tikz.tex
 VECTORFIGURES = timeline.tikz.svg
 
 # Additional files to distribute (e.g., CSS, schema files, examples...)
-AUX_FILES = ConeSearch-v1.1.xsd sample-response.xml sample-record-single.xml
+AUX_FILES = $(SCHEMA_FILE) sample-response.xml sample-record-single.xml
 
 -include ivoatex/Makefile
 
@@ -52,7 +54,6 @@ sample-record-single.xml:
 		| xmlstarlet fo > $@
 
 STILTS ?= stilts
-SCHEMA_FILE=ConeSearch-v1.2.xsd
 
 test:
 	@$(STILTS) xsdvalidate $(SCHEMA_FILE)

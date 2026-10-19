@@ -19,12 +19,12 @@
 
 \author[https://wiki.ivoa.net/twiki/bin/view/IVOA/MarkusDemleitner]{
   Markus Demleitner}
+\author{Stelios Voutsinas}
 
 \editor{Markus Demleitner}
 
 % \previousversion[????URL????]{????Concise Document Label????}
 \previousversion[https://www.ivoa.net/documents/SCS2/20260529]{WD-2.0-20260529}
-\previousversion{This is the first public release}
 
 
 \begin{document}
@@ -554,9 +554,10 @@ the canonical prefix is \xmlel{cs:}.
   <xs:complexContent >
     <xs:extension base="vr:Capability" >
       <xs:sequence >
-        <xs:element name="maxSR" type="xs:float" minOccurs="0" maxOccurs="1" />
-        <xs:element name="maxRecords" type="xs:positiveInteger" minOccurs="0"
-                  maxOccurs="1" />
+        <xs:element name="maxSR" type="xs:float"
+          minOccurs="0" maxOccurs="1" />
+        <xs:element name="maxRecords" type="xs:positiveInteger"
+          minOccurs="0" maxOccurs="1" />
         <xs:element name="verbosity" type="xs:boolean" />
         <xs:element name="maxCone" type="xs:positiveInteger" minOccurs="0"
                   maxOccurs="1" />
@@ -749,7 +750,7 @@ FROM rr.capability
   NATURAL JOIN rr.interface
   NATURAL JOIN rr.resource as b
   NATURAL LEFT OUTER JOIN (
-    SELECT ivo_string_agg(related_id, '###sep###') AS related_ids
+    SELECT ivo_string_agg(related_id, '##sep##') AS related_ids
     FROM rr.relationship
     WHERE relationship_type='isservedby'
     GROUP BY ivoid) AS rels
@@ -972,8 +973,8 @@ declarations.\todo{Vizier?}
 \item Main id can be of any type now
 \item Loosened requirements to provide ConeSearch-1 capabilities
 on SCS2 services in the transition period
-\item New maxCone item in the registry extension, deprecating
-cs:TestQuery
+\item New maxCone item in the registry extension
+\item Deprecating cs:TestQuery in the registry extension
 \end{itemize}
 
 
