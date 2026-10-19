@@ -214,15 +214,11 @@ If you use public Gaia DR3 data in a paper, please take note of
         </stats>
         <dataType xsi:type="vs:SimpleDataType">integer</dataType>
       </param>
+      <testQuery>CIRCLE=303.29074137%2040.9302920611415004%200.001</testQuery>
     </interface>
     <maxSR>180</maxSR>
     <maxRecords>100000</maxRecords>
     <verbosity>true</verbosity>
-    <testQuery>
-      <ra>303.29074137</ra>
-      <dec>40.9302920611415004</dec>
-      <sr>0.001</sr>
-    </testQuery>
     <maxCone>200</maxCone>
   </capability>
   <capability standardID="ivo://ivoa.net/scs2#query-2.0" xsi:type="cs:ConeSearch">
@@ -406,16 +402,13 @@ If you use public Gaia DR3 data in a paper, please take note of
         </stats>
         <dataType xsi:type="vs:SimpleDataType">integer</dataType>
       </param>
+      <testQuery>CIRCLE=303.29074137%2040.9302920611415004%200.001</testQuery>
     </interface>
     <maxSR>180</maxSR>
     <maxRecords>100000</maxRecords>
     <verbosity>true</verbosity>
-    <testQuery>
-      <ra>303.29074137</ra>
-      <dec>40.9302920611415004</dec>
-      <sr>0.001</sr>
-    </testQuery>
   </capability>
+
   <capability standardID="ivo://ivoa.net/std/VOSI#capabilities">
     <interface role="std" xsi:type="vs:ParamHTTP">
       <accessURL use="full">http://dc.g-vo.org/gaia/q3/cone/capabilities</accessURL>
@@ -434,6 +427,7 @@ If you use public Gaia DR3 data in a paper, please take note of
       <mirrorURL>https://dc.g-vo.org/gaia/q3/cone/tableMetadata</mirrorURL>
     </interface>
   </capability>
+
   <capability standardID="ivo://ivoa.net/std/TAP#aux">
     <interface role="std" version="1.1" xsi:type="vs:ParamHTTP">
       <accessURL use="full">http://dc.g-vo.org/tap</accessURL>
